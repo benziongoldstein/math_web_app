@@ -1,0 +1,396 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography */
+h1 {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+/* How to Play Screen */
+.instructions {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.8;
+}
+
+.instructions p {
+    margin-bottom: 15px;
+}
+
+.instructions ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+}
+
+/* Countdown Screen */
+.countdown-display {
+    font-size: 8rem;
+    font-weight: bold;
+    color: #667eea;
+    animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Game Screen Layout */
+#game-screen {
+    max-width: 900px;
+}
+
+.target-section {
+    margin-bottom: 20px;
+}
+
+.target-label {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.target-display {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #667eea;
+    background: #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+/* Timer */
+.timer-section {
+    margin-bottom: 20px;
+}
+
+.timer-label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.timer-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #764ba2;
+    background: #fff3e0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.timer-display.warning {
+    color: #ff5722;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Scores */
+.scores-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.score-item {
+    background: #f5f5f5;
+    padding: 15px 25px;
+    border-radius: 10px;
+}
+
+.score-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-right: 10px;
+}
+
+.score-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Equation Display */
+.equation-section {
+    margin-bottom: 30px;
+}
+
+.equation-label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.equation-display {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    background: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.equation-placeholder {
+    color: #999;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.equation-prime {
+    color: #667eea;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.equation-prime:hover {
+    background: #e3f2fd;
+    transform: scale(1.1);
+}
+
+.equation-operator {
+    color: #999;
+    margin: 0 5px;
+}
+
+.equation-equals {
+    color: #999;
+    margin: 0 10px;
+}
+
+.equation-result {
+    color: #764ba2;
+    font-weight: bold;
+}
+
+/* Prime Buttons */
+.primes-section {
+    margin-top: 30px;
+}
+
+.primes-label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.prime-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.prime-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.prime-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+}
+
+.prime-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Success Animation */
+@keyframes success {
+    0% {
+        transform: scale(1);
+        background: white;
+    }
+    50% {
+        transform: scale(1.05);
+        background: #c8e6c9;
+    }
+    100% {
+        transform: scale(1);
+        background: white;
+    }
+}
+
+.screen.success-flash {
+    animation: success 0.5s ease-in-out;
+}
+
+/* Game Over Screen */
+.final-scores {
+    margin: 30px 0;
+}
+
+.final-score-item {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.final-score-label {
+    font-size: 1.3rem;
+    color: #666;
+}
+
+.final-score-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .target-display {
+        font-size: 3rem;
+    }
+    
+    .prime-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+    
+    .equation-display {
+        font-size: 1.4rem;
+    }
+    
+    .countdown-display {
+        font-size: 5rem;
+    }
+}
+

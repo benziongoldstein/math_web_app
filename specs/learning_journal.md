@@ -162,6 +162,82 @@ In our game:
 
 ---
 
+#### **Q3: What are the different ways to run a web app locally? Which should I use?**
+**Asked**: Day 2, before starting development
+
+**Answer**: 
+There are 3 main options to test your web app on your computer:
+
+**Option 1: Double-Click HTML File**
+- Just open `index.html` in your browser
+- **Pros**: Super simple, no setup
+- **Cons**: Some features don't work (browser security), not realistic
+- **Best for**: Quick viewing of basic pages
+
+**Option 2: Python Server** ⭐ **(We chose this!)**
+- Run command: `python3 -m http.server 8000`
+- Open: `http://localhost:8000` in browser
+- **Pros**: 
+  - No installation needed (we have Python)
+  - Works for all web projects
+  - Professional setup
+  - Avoids browser security issues
+- **Best for**: Real development (what we're doing!)
+
+**Option 3: Node.js Server**
+- Requires installing packages first
+- Similar to Python server
+- **Best for**: When using Node.js tools
+
+**Why we picked Option 2**: 
+You already have Python installed, it works for any future projects, and it's how real developers test web apps locally.
+
+---
+
+#### **Q4: What are HTML concepts like `id`, `class`, and `data-` attributes?**
+**Asked**: Day 2, after creating the HTML file
+
+**Answer**: 
+These are ways to label and organize HTML elements so CSS and JavaScript can work with them.
+
+**1. `id="something"` - Unique Name**
+- Like a person's unique ID card
+- Each `id` should only be used ONCE on the page
+- JavaScript uses it to find specific elements
+- Example from our project:
+  ```html
+  <button id="start-btn">Start Game</button>
+  ```
+  JS can find this exact button using `id="start-btn"`
+
+**2. `class="something"` - Group Label**
+- Like a uniform that multiple people wear
+- Multiple elements can have the same class
+- CSS uses it to style groups of elements
+- Example from our project:
+  ```html
+  <button class="btn">Start</button>
+  <button class="btn">How to Play</button>
+  ```
+  Both buttons get the same styling because they share `class="btn"`
+
+**3. `data-prime="2"` - Custom Data Storage**
+- Store extra information in an element
+- JavaScript can read this data later
+- Example from our project:
+  ```html
+  <button class="prime-btn" data-prime="2">2</button>
+  <button class="prime-btn" data-prime="3">3</button>
+  ```
+  When you click a button, JS reads `data-prime` to know which number (2 or 3) you clicked
+
+**Quick Summary:**
+- `id` = Unique name (one per page)
+- `class` = Group label (many can share it)
+- `data-` = Custom info storage
+
+---
+
 ## Questions to Ask Next Time
 
 *Write down anything you're curious about here, and we'll answer it as we build!*
