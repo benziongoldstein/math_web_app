@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Factorization Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Main Menu Screen -->
+    <div id="main-menu" class="screen active">
+        <h1>Prime Factorization Game</h1>
+        <p class="subtitle">Practice your math skills!</p>
+        <button id="start-btn" class="btn btn-primary">Start Game</button>
+        <button id="how-to-play-btn" class="btn btn-secondary">How to Play</button>
+    </div>
+
+    <!-- How to Play Screen -->
+    <div id="how-to-play" class="screen">
+        <h2>How to Play</h2>
+        <div class="instructions">
+            <p><strong>Goal:</strong> Match the target number by multiplying prime numbers!</p>
+            <p><strong>Time Limit:</strong> You have 1 minute to factorize as many numbers as possible.</p>
+            <p><strong>How to Play:</strong></p>
+            <ul>
+                <li>Click prime numbers at the bottom to multiply them together</li>
+                <li>You can click the same prime multiple times (e.g., 2 × 2 × 2 = 8)</li>
+                <li>When your product matches the target, you get a new number instantly!</li>
+                <li>To undo, click a prime in your equation display</li>
+            </ul>
+            <p><strong>Scoring:</strong></p>
+            <ul>
+                <li>Correct Factors: How many numbers you solved correctly</li>
+                <li>Undo Count: How many times you used undo</li>
+            </ul>
+        </div>
+        <button id="back-to-menu-btn" class="btn btn-secondary">Back to Menu</button>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div id="countdown" class="screen">
+        <div id="countdown-number" class="countdown-display">3</div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <!-- Target Number Display -->
+        <div class="target-section">
+            <p class="target-label">Target Number:</p>
+            <div id="target-number" class="target-display">0</div>
+        </div>
+
+        <!-- Timer -->
+        <div class="timer-section">
+            <p class="timer-label">Time:</p>
+            <div id="timer" class="timer-display">60</div>
+        </div>
+
+        <!-- Scores -->
+        <div class="scores-section">
+            <div class="score-item">
+                <span class="score-label">Correct:</span>
+                <span id="correct-score" class="score-value">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Undos:</span>
+                <span id="undo-score" class="score-value">0</span>
+            </div>
+        </div>
+
+        <!-- Equation Display -->
+        <div class="equation-section">
+            <p class="equation-label">Your Equation:</p>
+            <div id="equation-display" class="equation-display">
+                <span class="equation-placeholder">Click primes below to start</span>
+            </div>
+        </div>
+
+        <!-- Prime Number Buttons -->
+        <div class="primes-section">
+            <p class="primes-label">Prime Numbers:</p>
+            <div id="prime-buttons" class="prime-buttons">
+                <button class="prime-btn" data-prime="2">2</button>
+                <button class="prime-btn" data-prime="3">3</button>
+                <button class="prime-btn" data-prime="5">5</button>
+                <button class="prime-btn" data-prime="7">7</button>
+                <button class="prime-btn" data-prime="11">11</button>
+                <button class="prime-btn" data-prime="13">13</button>
+                <button class="prime-btn" data-prime="17">17</button>
+                <button class="prime-btn" data-prime="19">19</button>
+                <button class="prime-btn" data-prime="23">23</button>
+                <button class="prime-btn" data-prime="29">29</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="game-over" class="screen">
+        <h2>Time's Up!</h2>
+        <div class="final-scores">
+            <div class="final-score-item">
+                <span class="final-score-label">Correct Factors:</span>
+                <span id="final-correct" class="final-score-value">0</span>
+            </div>
+            <div class="final-score-item">
+                <span class="final-score-label">Undo Count:</span>
+                <span id="final-undo" class="final-score-value">0</span>
+            </div>
+        </div>
+        <button id="return-to-menu-btn" class="btn btn-primary">Return to Main Menu</button>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/utils.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
