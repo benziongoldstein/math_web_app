@@ -323,6 +323,34 @@ h2 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Is Prime Button */
+.is-prime-section {
+    margin-top: 20px;
+}
+
+.is-prime-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.is-prime-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(245, 87, 108, 0.4);
+}
+
+.is-prime-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 /* Success Animation */
 @keyframes success {
     0% {

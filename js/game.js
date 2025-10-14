@@ -4,6 +4,7 @@
 const gameState = {
     screen: 'main',                    // Current screen: 'main', 'howToPlay', 'countdown', 'playing', 'gameOver'
     targetNumber: 0,                   // Current target number to match
+    targetIsPrime: false,              // Whether current target is a prime number
     selectedPrimes: [],                // Array of selected prime numbers
     currentProduct: 1,                 // Current product of selected primes
     timeRemaining: 60,                 // Seconds remaining
@@ -20,7 +21,8 @@ const gameState = {
  * Initialize a new game
  */
 function initGame() {
-    gameState.targetNumber = generateRandomComposite(5, 100);
+    gameState.targetNumber = generateRandomTarget(5, 100);
+    gameState.targetIsPrime = isPrime(gameState.targetNumber);
     gameState.selectedPrimes = [];
     gameState.currentProduct = 1;
     gameState.timeRemaining = 60;
@@ -115,7 +117,8 @@ function onTargetMatched() {
     // Brief pause to show success animation before generating new target
     setTimeout(() => {
         // Generate new target and reset selection
-        gameState.targetNumber = generateRandomComposite(5, 100);
+        gameState.targetNumber = generateRandomTarget(5, 100);
+        gameState.targetIsPrime = isPrime(gameState.targetNumber);
         gameState.selectedPrimes = [];
         gameState.currentProduct = 1;
         
@@ -164,6 +167,22 @@ function returnToMainMenu() {
 function showHowToPlay() {
     gameState.screen = 'howToPlay';
     updateUI();
+}
+
+/**
+ * Handle when user clicks "Is Prime" button
+ */
+function handleIsPrimeClick() {
+    if (gameState.screen !== 'playing') return;
+    
+    // Check if target is actually prime
+    if (gameState.targetIsPrime) {
+        onTargetMatched();
+    } else {
+        // Target is not prime, so this is incorrect
+        // For now, we'll just play an undo sound as feedback
+        playUndoSound();
+    }
 }
 
 

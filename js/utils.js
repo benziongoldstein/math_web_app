@@ -66,6 +66,30 @@ function generateRandomComposite(min, max) {
 }
 
 /**
+ * Generate a random prime from available primes
+ * @returns {number} - A random prime number
+ */
+function generateRandomPrime() {
+    const randomIndex = Math.floor(Math.random() * AVAILABLE_PRIMES.length);
+    return AVAILABLE_PRIMES[randomIndex];
+}
+
+/**
+ * Generate a random target number (composite 80% of the time, prime 20% of the time)
+ * @param {number} min - Minimum value for composite numbers
+ * @param {number} max - Maximum value for composite numbers
+ * @returns {number} - A valid target number
+ */
+function generateRandomTarget(min, max) {
+    // 20% chance to generate a prime number
+    if (Math.random() < 0.2) {
+        return generateRandomPrime();
+    } else {
+        return generateRandomComposite(min, max);
+    }
+}
+
+/**
  * Calculate the product of an array of numbers
  * @param {number[]} numbers - Array of numbers to multiply
  * @returns {number} - The product

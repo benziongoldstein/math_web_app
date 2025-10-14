@@ -12,9 +12,8 @@ Players have **1 minute total** to correctly factorize as many random numbers as
 
 ### Target Number Generation
 - On game start (and after each successful factorization), a random target number is generated
-- Range: **5 to 100** (inclusive)
-- **Important**: Only generate **composite numbers** that can be factorized using the available primes
-- **Avoid** generating prime numbers that cannot be factorized (e.g., 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+- **80% of the time**: Generate composite numbers between **5 to 100** (inclusive) that can be factorized using the available primes
+- **20% of the time**: Generate a prime number from the available primes (2, 3, 5, 7, 11, 13, 17, 19, 23, 29)
 - Target is displayed prominently at the top of the screen
 
 ### Prime Number Selection Interface
@@ -22,6 +21,7 @@ Players have **1 minute total** to correctly factorize as many random numbers as
 - Primes are clickable buttons/elements
 - Each prime can be clicked **multiple times** (e.g., click "2" three times to get 2×2×2 = 8)
 - Visual feedback shows which primes have been selected and in what order
+- **"Is Prime" button** displayed below the prime numbers, allows users to identify when the target number is prime
 
 ### Multiplication Display
 - Show the **current product** as primes are selected
@@ -30,12 +30,20 @@ Players have **1 minute total** to correctly factorize as many random numbers as
 - Updates in real-time as primes are selected or undone
 
 ### Success Condition
-- When the current product **exactly matches** the target number:
+- When the current product **exactly matches** the target number (for composite targets):
   - **Positive visual feedback** (animation, color change, celebration effect)
   - Play a **success sound**
   - **Instantly generate a new random target number** (no pause/delay)
   - Increment the "Correct Factors" score by 1
   - Clear the equation display and reset current product
+- When the user clicks **"Is Prime"** and the target is actually prime:
+  - Same success feedback as above
+  - Increment the "Correct Factors" score by 1
+  - Generate a new random target number
+- When the user clicks **"Is Prime"** and the target is NOT prime:
+  - Play error/undo sound as feedback
+  - No score change
+  - Continue playing
 
 ### Overshoot/Mismatch Handling
 - If the product exceeds or doesn't match the target:
@@ -212,14 +220,14 @@ All sounds should be simple, non-intrusive, and enhance the experience.
 
 ## Game Logic Requirements
 
-### Composite Number Generation Algorithm
-- Generate random numbers between 5 and 100
-- Ensure all generated numbers can be factorized using available primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
-- Exclude prime numbers that have no factors other than 1 and themselves
+### Target Number Generation Algorithm
+- **80% of the time**: Generate random composite numbers between 5 and 100 that can be factorized using available primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+- **20% of the time**: Generate a random prime from the available primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
 
 ### Valid Target Numbers (Examples)
-- Composites: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 30, etc.
-- All numbers with factors from the available prime set
+- **Composites (80%)**: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 30, etc.
+- **Primes (20%)**: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+- All composite numbers with factors from the available prime set
 
 ### Invalid Target Numbers (Must Avoid)
 - Primes greater than 29: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97

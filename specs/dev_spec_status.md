@@ -113,6 +113,8 @@ math_web_app/
 | **Click Sound** | ✅ Completed | Medium | Beep sound in audio.js - Oct 14 |
 | **Success Sound** | ✅ Completed | Medium | C-E-G melody in audio.js - Oct 14 |
 | **Undo Sound** | ✅ Completed | Medium | Undo beep in audio.js - Oct 14 |
+| **Prime Generation** | ✅ Completed | High | Primes generated 20% of time - Oct 14 |
+| **Is Prime Button** | ✅ Completed | High | Button to identify primes - Oct 14 |
 
 ### UI/UX Features
 
@@ -199,12 +201,13 @@ math_web_app/
 
 ## Technical Implementation Details
 
-### 1. Composite Number Generation
+### 1. Target Number Generation
 **Algorithm**:
-- Generate random number between 5-100
-- Check if number is composite (can be factorized by available primes)
-- If prime or invalid, regenerate
-- Return valid composite number
+- 20% of the time: Generate a random prime from AVAILABLE_PRIMES (2, 3, 5, 7, 11, 13, 17, 19, 23, 29)
+- 80% of the time: Generate random composite number between 5-100
+  - Check if number is composite (can be factorized by available primes)
+  - If prime or invalid, regenerate
+  - Return valid composite number
 
 **Available Primes for Factorization**: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
 
@@ -377,5 +380,12 @@ math_web_app/
   - 5 bugs fixed total
   - 100% test pass rate
   - Total files: 13 (HTML, CSS, 5 JS modules, 3 spec files, README, learning journal)
+- **v1.1.0** (Oct 14, 2025): Prime Number Generation Feature
+  - Added: Prime numbers can now be generated as targets 20% of the time
+  - Added: "Is Prime" button for identifying prime number targets
+  - Modified: generateRandomTarget() function in utils.js
+  - Modified: Game state now tracks if target is prime
+  - Updated: How to Play instructions
+  - Updated: Product specifications and dev status documentation
 
 
