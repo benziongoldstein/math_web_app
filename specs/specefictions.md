@@ -13,7 +13,7 @@ Players have **1 minute total** to correctly factorize as many random numbers as
 ### Target Number Generation
 - On game start (and after each successful factorization), a random target number is generated
 - **80% of the time**: Generate composite numbers between **5 to 100** (inclusive) that can be factorized using the available primes
-- **20% of the time**: Generate a prime number from the available primes (2, 3, 5, 7, 11, 13, 17, 19, 23, 29)
+- **20% of the time**: Generate a prime number **greater than 29** (from: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
 - Target is displayed prominently at the top of the screen
 
 ### Prime Number Selection Interface
@@ -21,7 +21,7 @@ Players have **1 minute total** to correctly factorize as many random numbers as
 - Primes are clickable buttons/elements
 - Each prime can be clicked **multiple times** (e.g., click "2" three times to get 2×2×2 = 8)
 - Visual feedback shows which primes have been selected and in what order
-- **"Is Prime" button** displayed below the prime numbers, allows users to identify when the target number is prime
+- **"Is Prime" button** displayed below the prime numbers, allows users to identify when the target number is a prime greater than 29 (cannot be factorized)
 
 ### Multiplication Display
 - Show the **current product** as primes are selected
@@ -222,15 +222,13 @@ All sounds should be simple, non-intrusive, and enhance the experience.
 
 ### Target Number Generation Algorithm
 - **80% of the time**: Generate random composite numbers between 5 and 100 that can be factorized using available primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
-- **20% of the time**: Generate a random prime from the available primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+- **20% of the time**: Generate a random prime **greater than 29** from: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
 
 ### Valid Target Numbers (Examples)
 - **Composites (80%)**: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 30, etc.
-- **Primes (20%)**: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+- **Primes (20%)**: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
 - All composite numbers with factors from the available prime set
-
-### Invalid Target Numbers (Must Avoid)
-- Primes greater than 29: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+- All primes greater than 29 within the 5-100 range
 
 ---
 

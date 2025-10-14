@@ -66,12 +66,25 @@ function generateRandomComposite(min, max) {
 }
 
 /**
- * Generate a random prime from available primes
- * @returns {number} - A random prime number
+ * Generate a random prime greater than 29 within the range
+ * @param {number} min - Minimum value
+ * @param {number} max - Maximum value
+ * @returns {number} - A random prime number greater than 29
  */
-function generateRandomPrime() {
-    const randomIndex = Math.floor(Math.random() * AVAILABLE_PRIMES.length);
-    return AVAILABLE_PRIMES[randomIndex];
+function generateRandomPrimeGreaterThan29(min, max) {
+    // List of primes between 31 and 100 that are greater than 29
+    const primesGreaterThan29 = [31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+    
+    // Filter primes within the range
+    const validPrimes = primesGreaterThan29.filter(p => p >= min && p <= max);
+    
+    if (validPrimes.length === 0) {
+        // Fallback to smallest prime > 29 if no valid primes in range
+        return 31;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * validPrimes.length);
+    return validPrimes[randomIndex];
 }
 
 /**
@@ -81,9 +94,9 @@ function generateRandomPrime() {
  * @returns {number} - A valid target number
  */
 function generateRandomTarget(min, max) {
-    // 20% chance to generate a prime number
+    // 20% chance to generate a prime number greater than 29
     if (Math.random() < 0.2) {
-        return generateRandomPrime();
+        return generateRandomPrimeGreaterThan29(min, max);
     } else {
         return generateRandomComposite(min, max);
     }

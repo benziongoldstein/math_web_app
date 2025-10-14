@@ -2,7 +2,7 @@
 
 A fun, educational web-based game for practicing prime factorization skills. Race against the clock to match target numbers by multiplying prime numbers!
 
-![Game Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Game Version](https://img.shields.io/badge/version-1.1.0-blue)
 ![Status](https://img.shields.io/badge/status-fully%20functional-brightgreen)
 
 ---
@@ -14,6 +14,8 @@ This interactive math game helps players practice prime factorization in a fun, 
 ### Key Features
 - ✅ **60-second timed gameplay** - Fast-paced challenge
 - ✅ **10 prime numbers to choose from** - 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+- ✅ **Prime identification** - 20% of targets are prime numbers > 29 that you identify instead of factorize
+- ✅ **"Is Prime" button** - Click to identify when a target is prime
 - ✅ **Undo functionality** - Click primes in equation to remove them
 - ✅ **Score tracking** - Tracks correct answers and undo count
 - ✅ **Sound effects** - Click, success, and undo sounds
@@ -64,11 +66,15 @@ This interactive math game helps players practice prime factorization in a fun, 
 
 3. **Gameplay** (60 seconds)
    - A target number (5-100) appears at the top
-   - Click prime numbers at the bottom to multiply them together
-   - Your equation updates in real-time (e.g., "2 × 3 × 5 = 30")
-   - Match the target number exactly to succeed!
+   - **For composite numbers (80% of targets):**
+     - Click prime numbers at the bottom to multiply them together
+     - Your equation updates in real-time (e.g., "2 × 3 × 5 = 30")
+     - Match the target number exactly to succeed!
+   - **For prime numbers (20% of targets):**
+     - If the target is a prime > 29 (like 37, 41, 53, etc.), click the "Is Prime" button
+     - These cannot be factorized using the available primes
    - On success: green flash, sound, new target instantly appears
-   - Score increments with each correct factorization
+   - Score increments with each correct factorization or identification
 
 4. **Undo**
    - Click any prime **in your equation** to remove the last occurrence of that prime
@@ -81,7 +87,8 @@ This interactive math game helps players practice prime factorization in a fun, 
 
 ### Tips
 - You can click the same prime multiple times (e.g., 2×2×2 = 8)
-- Only composite numbers are generated (no impossible primes!)
+- Watch for prime numbers > 29 that cannot be factorized (31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+- Use the "Is Prime" button to identify these primes for quick points
 - Use undo strategically when you overshoot the target
 - Speed matters - try to solve as many as possible in 60 seconds!
 
@@ -138,8 +145,8 @@ math_web_app/
 
 ### Valid Target Numbers
 - Range: **5 to 100**
-- Only **composite numbers** that can be factorized using the available primes
-- Excludes large primes (31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+- **80% of the time**: Composite numbers that can be factorized using the available primes
+- **20% of the time**: Prime numbers greater than 29 (31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
 
 ### Available Primes
 ```
@@ -201,7 +208,7 @@ Potential features for future versions:
 **Developed by**: Ben  
 **Development Approach**: AI-assisted incremental development  
 **Date**: October 2025  
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 
 ### Acknowledgments
 - Built as a learning project to understand web development
