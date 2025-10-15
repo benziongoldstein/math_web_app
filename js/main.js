@@ -36,6 +36,11 @@ function setupEventListeners() {
         });
     });
     
+    // Prime recognition button
+    document.getElementById('prime-recognition-btn').addEventListener('click', () => {
+        handlePrimeClick();
+    });
+    
     // Game over screen
     document.getElementById('return-to-menu-btn').addEventListener('click', () => {
         returnToMainMenu();

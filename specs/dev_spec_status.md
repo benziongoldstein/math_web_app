@@ -2,9 +2,9 @@
 
 ## Project Information
 **Project Name**: Math Practice Web App (Prime Factorization Game)  
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 **Last Updated**: October 14, 2025  
-**Development Status**: ✅ **COMPLETE** - All Phases Finished!  
+**Development Status**: ✅ **v1.1 DEPLOYED** - Prime Recognition Feature Live on GitHub Pages!  
 
 ---
 
@@ -193,34 +193,50 @@ math_web_app/
 - [x] Write comprehensive README
 - [x] Document code with comments (inline comments in code)
 - [x] Create setup/installation instructions (in README)
-- [ ] Prepare for deployment (optional - future enhancement)
+- [x] Deployment to GitHub Pages (completed)
+
+### Phase 9 (v1.1): Prime Recognition Feature (✅ Completed - Oct 14)
+- [x] Update utils.js - Add function to generate primes (31-97)
+- [x] Update utils.js - Modify target generation for 20% prime chance
+- [x] Update game.js - Add isPrimeTarget flag to gameState
+- [x] Update game.js - Add handlePrimeClick() function
+- [x] Update index.html - Add "Prime" button to UI
+- [x] Update CSS - Style the "Prime" button
+- [x] Update main.js - Wire up Prime button event listener
+- [x] Test prime generation (should be ~20% of targets)
+- [x] Test correct prime identification
+- [x] Test incorrect prime click on composite
+- [ ] Update README with new feature (Optional - can be done later)
+- [x] Deploy v1.1 to GitHub Pages ✅ LIVE!
 
 ---
 
 ## Technical Implementation Details
 
-### 1. Composite Number Generation
+### 1. Target Number Generation (Updated v1.1)
 **Algorithm**:
-- Generate random number between 5-100
-- Check if number is composite (can be factorized by available primes)
-- If prime or invalid, regenerate
-- Return valid composite number
+- 20% chance: Generate a large prime number (31-97) for prime recognition
+- 80% chance: Generate a composite number (5-100) for factorization
+- Return `{value: number, isPrime: boolean}`
 
 **Available Primes for Factorization**: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
 
-**Invalid Targets (Primes to Exclude)**: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+**Large Primes for Recognition (v1.1)**: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+- Players must identify these as prime using the "It's Prime!" button
+- Cannot be factorized using available primes
 
-### 2. Game State Management
+### 2. Game State Management (Updated v1.1)
 **State Object**:
 ```javascript
 {
   screen: 'main' | 'playing' | 'gameOver',
   targetNumber: number,
+  isPrimeTarget: boolean,        // v1.1: Is current target a prime?
   selectedPrimes: array,
   currentProduct: number,
   timer: number (seconds remaining),
   scores: {
-    correctFactors: number,
+    correctFactors: number,      // Counts both factorizations AND prime identifications
     undoCount: number
   },
   gameStarted: boolean,
@@ -260,12 +276,21 @@ math_web_app/
   - Reset equation display
   - Continue game (no pause)
 
+### 7. Prime Recognition Logic (v1.1)
+- **"It's Prime!" button** displayed below prime factor buttons
+- When clicked:
+  - Check if `isPrimeTarget === true`
+  - If true: Treat as success (same as factorization success)
+  - If false: Do nothing (no penalty for wrong guess)
+- Players must recognize when target cannot be factorized
+- Timer continues running - no hints provided
+
 ---
 
 ## Known Constraints & Considerations
 
-### Constraints
-1. Only composite numbers between 5-100 that can be factorized by primes ≤ 29
+### Constraints (Updated v1.1)
+1. Target numbers: 80% composite (5-100, factorable by primes ≤ 29), 20% large primes (31-97)
 2. 1-minute total game time (not per number)
 3. No backend/database (all client-side)
 4. Must work in modern browsers
@@ -282,7 +307,7 @@ math_web_app/
 ## Testing Checklist
 
 ### Functional Testing
-- [x] Target numbers are always composite and factorable ✅
+- [x] Target numbers: ~80% composite (factorable), ~20% large primes ✅
 - [x] Prime selection increments product correctly ✅
 - [x] Multiple selections of same prime work ✅
 - [x] Undo removes last occurrence correctly ✅
@@ -293,6 +318,9 @@ math_web_app/
 - [x] Game ends when timer reaches 0 ✅
 - [x] Scores track accurately ✅
 - [x] All sounds play at correct times ✅
+- [x] Prime recognition button works (v1.1) ✅
+- [x] Correct prime click triggers success (v1.1) ✅
+- [x] Wrong prime click does nothing (v1.1) ✅
 
 ### UI Testing
 - [x] All buttons are clickable and responsive ✅
@@ -377,5 +405,15 @@ math_web_app/
   - 5 bugs fixed total
   - 100% test pass rate
   - Total files: 13 (HTML, CSS, 5 JS modules, 3 spec files, README, learning journal)
+- **v1.1.0** (Oct 14, 2025): 🎯 PRIME RECOGNITION FEATURE ADDED!
+  - Added: Large prime numbers (31-97) as targets (20% chance)
+  - Added: "It's Prime!" button for prime recognition
+  - Updated: Target generation algorithm (80% composite, 20% prime)
+  - Updated: Game state to track isPrimeTarget flag
+  - Updated: Success detection to handle both factorization and prime recognition
+  - Styled: Orange/red gradient button to stand out
+  - Tested: All new functionality working correctly
+  - Phase 9 complete - Feature successfully deployed
+  - Educational value increased: Players now learn prime recognition alongside factorization
 
 
