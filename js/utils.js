@@ -3,6 +3,9 @@
 // Available primes that can be used for factorization
 const AVAILABLE_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
 
+// Large primes (31-97) for prime recognition feature
+const LARGE_PRIMES = [31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+
 /**
  * Check if a number can be factorized using only available primes
  * @param {number} num - The number to check
@@ -73,6 +76,36 @@ function generateRandomComposite(min, max) {
 function calculateProduct(numbers) {
     if (numbers.length === 0) return 1;
     return numbers.reduce((acc, val) => acc * val, 1);
+}
+
+/**
+ * Generate a random large prime number (31-97)
+ * @returns {number} - A random large prime
+ */
+function generateRandomLargePrime() {
+    const randomIndex = Math.floor(Math.random() * LARGE_PRIMES.length);
+    return LARGE_PRIMES[randomIndex];
+}
+
+/**
+ * Generate a random target (composite or prime based on 20% chance)
+ * @param {number} min - Minimum value for composites
+ * @param {number} max - Maximum value for composites
+ * @returns {object} - {value: number, isPrime: boolean}
+ */
+function generateRandomTarget(min, max) {
+    // 20% chance of generating a prime
+    if (Math.random() < 0.2) {
+        return {
+            value: generateRandomLargePrime(),
+            isPrime: true
+        };
+    } else {
+        return {
+            value: generateRandomComposite(min, max),
+            isPrime: false
+        };
+    }
 }
 
 

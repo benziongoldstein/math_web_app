@@ -226,6 +226,33 @@ All sounds should be simple, non-intrusive, and enhance the experience.
 
 ---
 
+## New Feature: Prime Number Recognition (v1.1 - In Development)
+
+### Feature Description
+In addition to factorizing composite numbers, players must also recognize and identify prime numbers.
+
+### Implementation Details
+- **20% of targets are prime numbers** (randomly mixed with composites)
+- **Prime range**: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 (15 primes between 30-100)
+- **"Prime" button** added to the UI alongside prime factor buttons
+- When target is prime:
+  - Player cannot factorize it (will never reach the target)
+  - Player must recognize it's prime and click "Prime" button
+  - Correct click: Success sound + green flash + new target (same as factorization success)
+  - Wrong click on composite: Nothing happens (no penalty)
+- If player tries to factorize a prime:
+  - Timer continues running normally
+  - No hints or help provided
+  - Player must realize on their own
+- Score tracks both factorizations and prime identifications together
+
+### Educational Value
+- Teaches prime recognition alongside factorization
+- Increases difficulty and strategic thinking
+- More realistic mathematical challenge
+
+---
+
 ## Future Enhancement Ideas (Out of Scope for v1)
 - Difficulty levels (different number ranges, more primes)
 - Leaderboard/high scores with persistence
@@ -235,6 +262,7 @@ All sounds should be simple, non-intrusive, and enhance the experience.
 - Multiplayer/competitive mode
 - Statistics tracking across sessions
 - Custom prime set selection
+- Separate score tracking for primes vs composites
 
 ---
 

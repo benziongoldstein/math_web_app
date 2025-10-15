@@ -4,6 +4,7 @@
 const gameState = {
     screen: 'main',                    // Current screen: 'main', 'howToPlay', 'countdown', 'playing', 'gameOver'
     targetNumber: 0,                   // Current target number to match
+    isPrimeTarget: false,              // Is the current target a prime number?
     selectedPrimes: [],                // Array of selected prime numbers
     currentProduct: 1,                 // Current product of selected primes
     timeRemaining: 60,                 // Seconds remaining
@@ -20,7 +21,9 @@ const gameState = {
  * Initialize a new game
  */
 function initGame() {
-    gameState.targetNumber = generateRandomComposite(5, 100);
+    const target = generateRandomTarget(5, 100);
+    gameState.targetNumber = target.value;
+    gameState.isPrimeTarget = target.isPrime;
     gameState.selectedPrimes = [];
     gameState.currentProduct = 1;
     gameState.timeRemaining = 60;
@@ -115,7 +118,9 @@ function onTargetMatched() {
     // Brief pause to show success animation before generating new target
     setTimeout(() => {
         // Generate new target and reset selection
-        gameState.targetNumber = generateRandomComposite(5, 100);
+        const target = generateRandomTarget(5, 100);
+        gameState.targetNumber = target.value;
+        gameState.isPrimeTarget = target.isPrime;
         gameState.selectedPrimes = [];
         gameState.currentProduct = 1;
         
@@ -164,6 +169,20 @@ function returnToMainMenu() {
 function showHowToPlay() {
     gameState.screen = 'howToPlay';
     updateUI();
+}
+
+/**
+ * Handle Prime button click
+ */
+function handlePrimeClick() {
+    if (gameState.screen !== 'playing') return;
+    
+    // Check if current target is actually prime
+    if (gameState.isPrimeTarget) {
+        // Correct! Treat like success
+        onTargetMatched();
+    }
+    // If not prime (composite), do nothing (no penalty)
 }
 
 

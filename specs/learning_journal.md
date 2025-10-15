@@ -141,6 +141,15 @@ This makes something happen when you click a button.
 - ✅ **Project planning**: Writing specifications before coding
 - ✅ **Development phases**: Breaking a big project into manageable steps
 
+### October 14, 2025
+- ✅ **Building a complete web app**: Created a fully functional game from scratch
+- ✅ **HTML, CSS, and JavaScript**: Learned how they work together
+- ✅ **Testing and debugging**: Found and fixed 5 bugs
+- ✅ **Sound with Web Audio API**: Created sounds without audio files
+- ✅ **Deployment with GitHub Pages**: Published game to the internet
+- ✅ **localhost vs public hosting**: Understanding local vs deployed apps
+- ✅ **Git and GitHub**: Pushed code and enabled Pages for worldwide access
+
 ---
 
 #### **Q2: What is JS?**
@@ -235,6 +244,54 @@ These are ways to label and organize HTML elements so CSS and JavaScript can wor
 - `id` = Unique name (one per page)
 - `class` = Group label (many can share it)
 - `data-` = Custom info storage
+
+---
+
+#### **Q5: What is deployment? How did we make the game available on the web?**
+**Asked**: After completing the project and deploying to GitHub Pages
+
+**Answer**:
+**Deployment** = Putting your code/website on the internet so anyone can access it (not just you on localhost).
+
+**The Problem with localhost:**
+- `localhost:8000` only works on YOUR computer
+- When friends try to open it, their browser looks on THEIR computer (not yours)
+- It's like a phone number that only works inside your house
+
+**The Solution - GitHub Pages:**
+GitHub Pages is a free hosting service that takes your files and serves them to the world.
+
+**What We Did:**
+1. **Pushed code to GitHub** - Uploaded our files to GitHub repository
+2. **Enabled GitHub Pages** in Settings:
+   - Go to repo Settings → Pages
+   - Select branch (`ben_ai_branch`)
+   - Select folder (root `/`)
+   - Click Save
+3. **GitHub built the site** - GitHub's servers processed our files
+4. **Got a public URL** - `https://benziongoldstein.github.io/math_web_app/`
+5. **Now anyone worldwide can play!**
+
+**Before vs After:**
+- **Before**: `localhost:8000` - only on your computer
+- **After**: `https://yourname.github.io/project/` - worldwide access
+
+**How it works:**
+```
+Your Computer → Git Push → GitHub Repo → GitHub Pages → Public URL → Anyone can visit!
+```
+
+**Why GitHub Pages is great:**
+- ✅ Free forever
+- ✅ Automatic updates (push to GitHub = site updates)
+- ✅ Fast and reliable
+- ✅ No server setup needed
+- ✅ Professional URL
+
+**Other deployment options:**
+- Netlify (drag & drop deployment)
+- Vercel (similar to GitHub Pages)
+- Traditional web hosting (more complex, costs money)
 
 ---
 

@@ -2,9 +2,9 @@
 
 ## Project Information
 **Project Name**: Math Practice Web App (Prime Factorization Game)  
-**Version**: 1.0.0  
+**Version**: 1.1.0 (In Development)  
 **Last Updated**: October 14, 2025  
-**Development Status**: ✅ **COMPLETE** - All Phases Finished!  
+**Development Status**: 🔄 **v1.1 Enhancement** - Adding Prime Recognition Feature  
 
 ---
 
@@ -193,7 +193,21 @@ math_web_app/
 - [x] Write comprehensive README
 - [x] Document code with comments (inline comments in code)
 - [x] Create setup/installation instructions (in README)
-- [ ] Prepare for deployment (optional - future enhancement)
+- [x] Deployment to GitHub Pages (completed)
+
+### Phase 9 (v1.1): Prime Recognition Feature (🔄 In Progress - Oct 14)
+- [ ] Update utils.js - Add function to generate primes (31-97)
+- [ ] Update utils.js - Modify target generation for 20% prime chance
+- [ ] Update game.js - Add isPrimeTarget flag to gameState
+- [ ] Update game.js - Add handlePrimeClick() function
+- [ ] Update index.html - Add "Prime" button to UI
+- [ ] Update CSS - Style the "Prime" button
+- [ ] Update ui.js - Handle Prime button display/events
+- [ ] Test prime generation (should be ~20% of targets)
+- [ ] Test correct prime identification
+- [ ] Test incorrect prime click on composite
+- [ ] Update README with new feature
+- [ ] Deploy v1.1 to GitHub Pages
 
 ---
 
