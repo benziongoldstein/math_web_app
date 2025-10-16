@@ -1,0 +1,31 @@
+{
+  "name": "math-web-app",
+  "version": "1.2.0",
+  "description": "Prime Factorization Game - Educational math practice web app",
+  "main": "index.html",
+  "scripts": {
+    "test": "node tests/run-tests.js",
+    "lint": "node tests/lint-html.js",
+    "validate": "node tests/validate-js.js",
+    "test:watch": "npm test",
+    "serve": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benziongoldstein/math_web_app.git"
+  },
+  "keywords": [
+    "math",
+    "education",
+    "game",
+    "prime-numbers",
+    "factorization"
+  ],
+  "author": "Ben",
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
+
