@@ -209,6 +209,20 @@ math_web_app/
 - [ ] Update README with new feature (Optional - can be done later)
 - [x] Deploy v1.1 to GitHub Pages ✅ LIVE!
 
+### Phase 10 (v1.2): Simple Mode for Beginners (🔄 In Progress - Oct 14)
+- [ ] Update index.html - Add mode selector buttons to main menu
+- [ ] Update CSS - Style mode selector (Normal/Simple buttons)
+- [ ] Update game.js - Add gameMode to gameState
+- [ ] Update game.js - Add logic to check if prime divides evenly
+- [ ] Update game.js - Update equation display format for Simple Mode
+- [ ] Update ui.js - Show division chain format in Simple Mode
+- [ ] Update main.js - Wire up mode selector buttons
+- [ ] Test Simple Mode with composite numbers
+- [ ] Test Simple Mode with wrong prime selections
+- [ ] Test Simple Mode with prime targets
+- [ ] Test Normal Mode still works correctly
+- [ ] Deploy v1.2 to GitHub Pages
+
 ---
 
 ## Technical Implementation Details

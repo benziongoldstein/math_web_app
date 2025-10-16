@@ -100,23 +100,38 @@ function updateEquationDisplay() {
     const equationDisplay = document.getElementById('equation-display');
     
     if (gameState.selectedPrimes.length === 0) {
-        equationDisplay.innerHTML = '<span class="equation-placeholder">Click primes below to start</span>';
+        const placeholder = gameState.gameMode === 'simple' ? 
+            'Click primes to divide' : 'Click primes below to start';
+        equationDisplay.innerHTML = `<span class="equation-placeholder">${placeholder}</span>`;
         return;
     }
     
-    // Build the equation string with clickable primes
     let equationHTML = '';
     
-    gameState.selectedPrimes.forEach((prime, index) => {
-        equationHTML += `<span class="equation-prime" data-prime="${prime}">${prime}</span>`;
+    if (gameState.gameMode === 'simple') {
+        // Simple Mode: Show division format (18 ÷ 2 ÷ 3 = 3)
+        equationHTML += `<span class="equation-target">${gameState.targetNumber}</span>`;
         
-        if (index < gameState.selectedPrimes.length - 1) {
-            equationHTML += '<span class="equation-operator">×</span>';
-        }
-    });
-    
-    equationHTML += '<span class="equation-equals">=</span>';
-    equationHTML += `<span class="equation-result">${gameState.currentProduct}</span>`;
+        gameState.selectedPrimes.forEach((prime) => {
+            equationHTML += '<span class="equation-operator">÷</span>';
+            equationHTML += `<span class="equation-prime" data-prime="${prime}">${prime}</span>`;
+        });
+        
+        equationHTML += '<span class="equation-equals">=</span>';
+        equationHTML += `<span class="equation-result">${gameState.currentIntermediate}</span>`;
+    } else {
+        // Normal Mode: Show multiplication format (2 × 3 = 6)
+        gameState.selectedPrimes.forEach((prime, index) => {
+            equationHTML += `<span class="equation-prime" data-prime="${prime}">${prime}</span>`;
+            
+            if (index < gameState.selectedPrimes.length - 1) {
+                equationHTML += '<span class="equation-operator">×</span>';
+            }
+        });
+        
+        equationHTML += '<span class="equation-equals">=</span>';
+        equationHTML += `<span class="equation-result">${gameState.currentProduct}</span>`;
+    }
     
     equationDisplay.innerHTML = equationHTML;
     

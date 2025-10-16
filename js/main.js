@@ -13,6 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
  * Set up all event listeners
  */
 function setupEventListeners() {
+    // Mode selector buttons
+    document.getElementById('normal-mode-btn').addEventListener('click', () => {
+        setGameMode('normal');
+        // Toggle active class
+        document.getElementById('normal-mode-btn').classList.add('mode-btn-active');
+        document.getElementById('simple-mode-btn').classList.remove('mode-btn-active');
+    });
+    
+    document.getElementById('simple-mode-btn').addEventListener('click', () => {
+        setGameMode('simple');
+        // Toggle active class
+        document.getElementById('simple-mode-btn').classList.add('mode-btn-active');
+        document.getElementById('normal-mode-btn').classList.remove('mode-btn-active');
+    });
+    
     // Main menu buttons
     document.getElementById('start-btn').addEventListener('click', () => {
         initGame();
