@@ -226,7 +226,30 @@ All sounds should be simple, non-intrusive, and enhance the experience.
 
 ---
 
-## New Feature: Prime Number Recognition (v1.1 - In Development)
+## New Feature: Simple Mode (v1.2 - In Development)
+
+### Feature Description
+An alternative gameplay mode that shows intermediate division results, making factorization more intuitive and accessible for learners.
+
+### Implementation Details
+- **Mode Selection**: Player chooses between "Normal Mode" or "Simple Mode" on main menu before game starts
+- **Display Format**: Shows complete division chain in one line: `18 ÷ 2 ÷ 3 = 3`
+- **Prime Interaction**:
+  - When player selects a prime, divide the current intermediate by that prime
+  - If result is NOT a whole number, nothing happens (silent rejection)
+  - If result IS a whole number, update the display with new intermediate
+- **Success Condition**: When intermediate reaches 1 (all factors selected)
+- **Prime Targets**: Work same as Normal Mode (click "It's Prime!")
+- **Mode Persistence**: Selected mode applies to entire game session
+- **Educational Value**: 
+  - Players see exact progress after each selection
+  - Wrong choices are obvious (nothing happens)
+  - Easier to understand factorization process
+  - Great for beginners!
+
+---
+
+## New Feature: Prime Number Recognition (v1.1 - Completed)
 
 ### Feature Description
 In addition to factorizing composite numbers, players must also recognize and identify prime numbers.

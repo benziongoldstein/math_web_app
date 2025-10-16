@@ -281,6 +281,11 @@ h2 {
     font-weight: bold;
 }
 
+.equation-target {
+    color: #667eea;
+    font-weight: bold;
+}
+
 /* Prime Buttons */
 .primes-section {
     margin-top: 30px;
@@ -357,6 +362,67 @@ h2 {
     transform: translateY(-1px);
 }
 
+/* Mode Selector */
+.mode-selector {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 15px;
+}
+
+.mode-label {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    min-width: 150px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    color: #666;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.mode-btn:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.mode-btn-active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.mode-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.mode-desc {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
 /* Success Animation */
 @keyframes success {
     0% {
@@ -405,26 +471,89 @@ h2 {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .screen {
+        padding: 20px;
+    }
+    
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 15px;
     }
     
     .target-display {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        padding: 10px;
+        margin-bottom: 10px;
     }
     
-    .prime-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.1rem;
+    .timer-display {
+        font-size: 1.8rem;
+        padding: 5px 15px;
+    }
+    
+    .scores-section {
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .score-item {
+        padding: 10px 15px;
+    }
+    
+    .score-value {
+        font-size: 1.2rem;
+    }
+    
+    .equation-section {
+        margin-bottom: 15px;
     }
     
     .equation-display {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        padding: 15px;
+        min-height: 50px;
+    }
+    
+    .primes-section {
+        margin-top: 15px;
+    }
+    
+    .prime-buttons {
+        gap: 8px;
+    }
+    
+    .prime-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    .prime-recognition-section {
+        margin-top: 15px;
+    }
+    
+    .btn-prime-recognition {
+        padding: 10px 25px;
+        font-size: 1.1rem;
     }
     
     .countdown-display {
-        font-size: 5rem;
+        font-size: 4rem;
+    }
+    
+    .mode-selector {
+        margin: 15px 0;
+        padding: 15px;
+    }
+    
+    .mode-btn {
+        min-width: 120px;
+        padding: 12px 20px;
     }
 }
 

@@ -5,8 +5,10 @@ const gameState = {
     screen: 'main',                    // Current screen: 'main', 'howToPlay', 'countdown', 'playing', 'gameOver'
     targetNumber: 0,                   // Current target number to match
     isPrimeTarget: false,              // Is the current target a prime number?
+    gameMode: 'normal',                // Game mode: 'normal' or 'simple'
     selectedPrimes: [],                // Array of selected prime numbers
-    currentProduct: 1,                 // Current product of selected primes
+    currentProduct: 1,                 // Current product of selected primes (Normal Mode)
+    currentIntermediate: 0,            // Current intermediate result (Simple Mode - dividing down)
     timeRemaining: 60,                 // Seconds remaining
     timerInterval: null,               // Reference to timer interval
     countdownValue: 3,                 // Countdown before game starts
@@ -18,6 +20,14 @@ const gameState = {
 };
 
 /**
+ * Set the game mode
+ * @param {string} mode - 'normal' or 'simple'
+ */
+function setGameMode(mode) {
+    gameState.gameMode = mode;
+}
+
+/**
  * Initialize a new game
  */
 function initGame() {
@@ -26,6 +36,7 @@ function initGame() {
     gameState.isPrimeTarget = target.isPrime;
     gameState.selectedPrimes = [];
     gameState.currentProduct = 1;
+    gameState.currentIntermediate = target.value;  // Start with the target in Simple Mode
     gameState.timeRemaining = 60;
     gameState.countdownValue = 3;
     gameState.scores.correctFactors = 0;
@@ -91,15 +102,36 @@ function endGame() {
 function selectPrime(prime) {
     if (gameState.screen !== 'playing') return;
     
-    gameState.selectedPrimes.push(prime);
-    gameState.currentProduct = calculateProduct(gameState.selectedPrimes);
-    
-    playClickSound();
-    updateUI();
-    
-    // Check if we matched the target
-    if (gameState.currentProduct === gameState.targetNumber) {
-        onTargetMatched();
+    if (gameState.gameMode === 'simple') {
+        // Simple Mode: Check if prime divides evenly
+        if (gameState.currentIntermediate % prime !== 0) {
+            // Does not divide evenly - do nothing (silent rejection)
+            return;
+        }
+        
+        // Divide the intermediate by the prime
+        gameState.selectedPrimes.push(prime);
+        gameState.currentIntermediate = gameState.currentIntermediate / prime;
+        
+        playClickSound();
+        updateUI();
+        
+        // Check if we reached 1 (all factors selected)
+        if (gameState.currentIntermediate === 1) {
+            onTargetMatched();
+        }
+    } else {
+        // Normal Mode: Multiply
+        gameState.selectedPrimes.push(prime);
+        gameState.currentProduct = calculateProduct(gameState.selectedPrimes);
+        
+        playClickSound();
+        updateUI();
+        
+        // Check if we matched the target
+        if (gameState.currentProduct === gameState.targetNumber) {
+            onTargetMatched();
+        }
     }
 }
 
@@ -123,6 +155,7 @@ function onTargetMatched() {
         gameState.isPrimeTarget = target.isPrime;
         gameState.selectedPrimes = [];
         gameState.currentProduct = 1;
+        gameState.currentIntermediate = target.value;  // Reset intermediate for Simple Mode
         
         updateUI();
     }, 600); // 600ms - slightly longer than animation for better UX
@@ -141,14 +174,23 @@ function undoPrime(primeToRemove) {
     
     if (lastIndex !== -1) {
         gameState.selectedPrimes.splice(lastIndex, 1);
-        gameState.currentProduct = calculateProduct(gameState.selectedPrimes);
         gameState.scores.undoCount++;
+        
+        if (gameState.gameMode === 'simple') {
+            // Simple Mode: Multiply back the intermediate
+            gameState.currentIntermediate = gameState.currentIntermediate * primeToRemove;
+        } else {
+            // Normal Mode: Recalculate product
+            gameState.currentProduct = calculateProduct(gameState.selectedPrimes);
+        }
         
         playUndoSound();
         updateUI();
         
         // Check if we matched the target after undo
-        if (gameState.currentProduct === gameState.targetNumber) {
+        if (gameState.gameMode === 'normal' && gameState.currentProduct === gameState.targetNumber) {
+            onTargetMatched();
+        } else if (gameState.gameMode === 'simple' && gameState.currentIntermediate === 1) {
             onTargetMatched();
         }
     }
