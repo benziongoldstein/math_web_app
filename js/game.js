@@ -112,6 +112,8 @@ function selectPrime(prime) {
         // Divide the intermediate by the prime
         gameState.selectedPrimes.push(prime);
         gameState.currentIntermediate = gameState.currentIntermediate / prime;
+        // Also update product for equation display
+        gameState.currentProduct = calculateProduct(gameState.selectedPrimes);
         
         playClickSound();
         updateUI();
@@ -179,6 +181,8 @@ function undoPrime(primeToRemove) {
         if (gameState.gameMode === 'simple') {
             // Simple Mode: Multiply back the intermediate
             gameState.currentIntermediate = gameState.currentIntermediate * primeToRemove;
+            // Also update product for equation display
+            gameState.currentProduct = calculateProduct(gameState.selectedPrimes);
         } else {
             // Normal Mode: Recalculate product
             gameState.currentProduct = calculateProduct(gameState.selectedPrimes);

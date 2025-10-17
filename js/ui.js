@@ -74,6 +74,22 @@ function showGameScreen() {
     // Update target number
     document.getElementById('target-number').textContent = gameState.targetNumber;
     
+    // Show/hide intermediate display based on game mode
+    const intermediateItem = document.getElementById('intermediate-item');
+    const intermediateNumber = document.getElementById('intermediate-number');
+    const equationSection = document.querySelector('.equation-section');
+    
+    if (gameState.gameMode === 'simple') {
+        // Simple Mode: Show both intermediate AND equation
+        intermediateItem.style.display = 'block';
+        intermediateNumber.textContent = gameState.currentIntermediate;
+        equationSection.style.display = 'block';
+    } else {
+        // Normal Mode: Hide intermediate, show equation only
+        intermediateItem.style.display = 'none';
+        equationSection.style.display = 'block';
+    }
+    
     // Update timer
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = gameState.timeRemaining;
@@ -89,49 +105,44 @@ function showGameScreen() {
     document.getElementById('correct-score').textContent = gameState.scores.correctFactors;
     document.getElementById('undo-score').textContent = gameState.scores.undoCount;
     
-    // Update equation display
+    // Update equation display (for both modes)
     updateEquationDisplay();
 }
 
 /**
- * Update the equation display
+ * Update just the intermediate value (Simple Mode)
+ */
+function updateIntermediateDisplay() {
+    const intermediateNumber = document.getElementById('intermediate-number');
+    if (intermediateNumber) {
+        intermediateNumber.textContent = gameState.currentIntermediate;
+    }
+}
+
+/**
+ * Update the equation display (Normal Mode only)
  */
 function updateEquationDisplay() {
     const equationDisplay = document.getElementById('equation-display');
     
     if (gameState.selectedPrimes.length === 0) {
-        const placeholder = gameState.gameMode === 'simple' ? 
-            'Click primes to divide' : 'Click primes below to start';
-        equationDisplay.innerHTML = `<span class="equation-placeholder">${placeholder}</span>`;
+        equationDisplay.innerHTML = `<span class="equation-placeholder">Click primes below to start</span>`;
         return;
     }
     
     let equationHTML = '';
     
-    if (gameState.gameMode === 'simple') {
-        // Simple Mode: Show division format (18 ÷ 2 ÷ 3 = 3)
-        equationHTML += `<span class="equation-target">${gameState.targetNumber}</span>`;
+    // Normal Mode: Show multiplication format (2 × 3 = 6)
+    gameState.selectedPrimes.forEach((prime, index) => {
+        equationHTML += `<span class="equation-prime" data-prime="${prime}">${prime}</span>`;
         
-        gameState.selectedPrimes.forEach((prime) => {
-            equationHTML += '<span class="equation-operator">÷</span>';
-            equationHTML += `<span class="equation-prime" data-prime="${prime}">${prime}</span>`;
-        });
-        
-        equationHTML += '<span class="equation-equals">=</span>';
-        equationHTML += `<span class="equation-result">${gameState.currentIntermediate}</span>`;
-    } else {
-        // Normal Mode: Show multiplication format (2 × 3 = 6)
-        gameState.selectedPrimes.forEach((prime, index) => {
-            equationHTML += `<span class="equation-prime" data-prime="${prime}">${prime}</span>`;
-            
-            if (index < gameState.selectedPrimes.length - 1) {
-                equationHTML += '<span class="equation-operator">×</span>';
-            }
-        });
-        
-        equationHTML += '<span class="equation-equals">=</span>';
-        equationHTML += `<span class="equation-result">${gameState.currentProduct}</span>`;
-    }
+        if (index < gameState.selectedPrimes.length - 1) {
+            equationHTML += '<span class="equation-operator">×</span>';
+        }
+    });
+    
+    equationHTML += '<span class="equation-equals">=</span>';
+    equationHTML += `<span class="equation-result">${gameState.currentProduct}</span>`;
     
     equationDisplay.innerHTML = equationHTML;
     

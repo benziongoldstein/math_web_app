@@ -62,8 +62,16 @@
     <div id="game-screen" class="screen">
         <!-- Target Number Display -->
         <div class="target-section">
-            <p class="target-label">Target Number:</p>
-            <div id="target-number" class="target-display">0</div>
+            <div class="target-container">
+                <div class="target-item">
+                    <p class="target-label">Target:</p>
+                    <div id="target-number" class="target-display">0</div>
+                </div>
+                <div id="intermediate-item" class="target-item" style="display: none;">
+                    <p class="target-label">Intermediate:</p>
+                    <div id="intermediate-number" class="target-display">0</div>
+                </div>
+            </div>
         </div>
 
         <!-- Timer -->

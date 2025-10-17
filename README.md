@@ -2,8 +2,15 @@
 
 A fun, educational web-based game for practicing prime factorization skills. Race against the clock to match target numbers by multiplying prime numbers!
 
-![Game Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Game Version](https://img.shields.io/badge/version-1.2.0-blue)
 ![Status](https://img.shields.io/badge/status-fully%20functional-brightgreen)
+![Features](https://img.shields.io/badge/modes-2%20game%20modes-purple)
+
+## 🌐 Play Online
+
+**Live Demo**: [https://benziongoldstein.github.io/math_web_app/](https://benziongoldstein.github.io/math_web_app/)
+
+Try the game now - no installation needed! Or play locally by following the instructions below.
 
 ---
 
@@ -12,13 +19,16 @@ A fun, educational web-based game for practicing prime factorization skills. Rac
 This interactive math game helps players practice prime factorization in a fun, arcade-style format. Players have 60 seconds to correctly factorize as many composite numbers as possible by selecting and multiplying prime numbers.
 
 ### Key Features
+- ✅ **Two game modes** - Normal Mode and Simple Mode for different skill levels
+- ✅ **Prime recognition** - Identify prime numbers (v1.1)
+- ✅ **Simple Mode** - See division progress in real-time for easier learning (v1.2)
 - ✅ **60-second timed gameplay** - Fast-paced challenge
 - ✅ **10 prime numbers to choose from** - 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
 - ✅ **Undo functionality** - Click primes in equation to remove them
 - ✅ **Score tracking** - Tracks correct answers and undo count
 - ✅ **Sound effects** - Click, success, and undo sounds
 - ✅ **Visual feedback** - Green flash animation on success
-- ✅ **Responsive design** - Works on desktop and tablet
+- ✅ **Responsive design** - Works on desktop, tablet, and mobile
 - ✅ **Beautiful UI** - Modern purple gradient design
 
 ---
@@ -53,9 +63,24 @@ This interactive math game helps players practice prime factorization in a fun, 
 
 ## 🎮 How to Play
 
+### Choose Your Mode
+
+**Normal Mode** 🎯
+- See your multiplication equation (e.g., `2 × 3 × 5 = 30`)
+- Match the target number exactly
+- Great for practicing mental multiplication
+
+**Simple Mode** 🎓
+- See both Target and Intermediate values side by side
+- Watch the target get divided by your selected primes
+- Equation shows your factors for easy undo
+- Perfect for beginners learning the relationship between multiplication and division
+- Win when Intermediate reaches 1!
+
 ### Game Flow
 
 1. **Main Menu**
+   - Select your preferred mode: **Normal** or **Simple**
    - Click **"Start Game"** to begin
    - Click **"How to Play"** for instructions
 
@@ -138,8 +163,9 @@ math_web_app/
 
 ### Valid Target Numbers
 - Range: **5 to 100**
-- Only **composite numbers** that can be factorized using the available primes
-- Excludes large primes (31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+- **80% composite numbers** that can be factorized using the available primes
+- **20% large prime numbers** (31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+- When you get a prime target, click the **"It's Prime!"** button to score!
 
 ### Available Primes
 ```
@@ -159,18 +185,23 @@ This game helps players:
 - Practice **prime factorization** in a fun, engaging way
 - Improve **mental math** skills
 - Develop **number sense** with primes and composites
+- Understand the **relationship between multiplication and division** (Simple Mode)
+- Recognize **prime numbers** and their properties
 - Work under **time pressure** to build fluency
 - Learn through **immediate feedback** (visual and audio)
+- Progress from Simple Mode (beginner) to Normal Mode (advanced)
 
 ---
 
 ## 📊 Development Stats
 
-- **Total Development Time**: ~1 day
-- **Lines of Code**: ~800 lines
-- **Files Created**: 13
-- **Bugs Fixed**: 4
+- **Current Version**: 1.2.0
+- **Total Development Time**: ~2 days
+- **Lines of Code**: ~1000 lines
+- **Files Created**: 15
+- **Bugs Fixed**: 6
 - **Tests Passed**: 100% ✅
+- **Features**: 2 game modes, prime recognition, responsive design
 
 ---
 
@@ -188,11 +219,13 @@ Potential features for future versions:
 - [ ] Difficulty levels (different number ranges, more primes)
 - [ ] Leaderboard/high scores with local storage
 - [ ] Hint system
-- [ ] Multiple game modes (untimed practice mode)
+- [ ] Untimed practice mode
 - [ ] Sound on/off toggle
 - [ ] More prime numbers available
 - [ ] Multiplayer/competitive mode
 - [ ] Statistics tracking across sessions
+- [ ] Separate score tracking for primes vs composites
+- [ ] Advanced mode with larger numbers
 
 ---
 
@@ -201,7 +234,8 @@ Potential features for future versions:
 **Developed by**: Ben  
 **Development Approach**: AI-assisted incremental development  
 **Date**: October 2025  
-**Version**: 1.0.0  
+**Version**: 1.2.0  
+**Live Demo**: [https://benziongoldstein.github.io/math_web_app/](https://benziongoldstein.github.io/math_web_app/)  
 
 ### Acknowledgments
 - Built as a learning project to understand web development
