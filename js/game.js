@@ -115,11 +115,6 @@ function selectPrime(prime) {
         // Also update product for equation display
         gameState.currentProduct = calculateProduct(gameState.selectedPrimes);
         
-        console.log('SIMPLE MODE - After clicking ' + prime + ':');
-        console.log('  selectedPrimes:', gameState.selectedPrimes);
-        console.log('  currentProduct:', gameState.currentProduct);
-        console.log('  currentIntermediate:', gameState.currentIntermediate);
-        
         playClickSound();
         updateUI();
         
