@@ -143,6 +143,20 @@ h2 {
     margin-bottom: 20px;
 }
 
+.target-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.target-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .target-label {
     font-size: 1.2rem;
     color: #666;
@@ -157,6 +171,8 @@ h2 {
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 10px;
+    min-width: 120px;
+    text-align: center;
 }
 
 /* Timer */
@@ -485,10 +501,19 @@ h2 {
         margin-bottom: 15px;
     }
     
+    .target-container {
+        gap: 20px;
+    }
+    
     .target-display {
         font-size: 2.5rem;
         padding: 10px;
         margin-bottom: 10px;
+        min-width: 100px;
+    }
+    
+    .target-label {
+        font-size: 1rem;
     }
     
     .timer-display {

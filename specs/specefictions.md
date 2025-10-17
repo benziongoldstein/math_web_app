@@ -226,25 +226,33 @@ All sounds should be simple, non-intrusive, and enhance the experience.
 
 ---
 
-## New Feature: Simple Mode (v1.2 - In Development)
+## New Feature: Simple Mode (v1.2 - Completed)
 
 ### Feature Description
-An alternative gameplay mode that shows intermediate division results, making factorization more intuitive and accessible for learners.
+An alternative gameplay mode that shows intermediate division results alongside the target, making factorization more intuitive and accessible for learners.
 
 ### Implementation Details
 - **Mode Selection**: Player chooses between "Normal Mode" or "Simple Mode" on main menu before game starts
-- **Display Format**: Shows complete division chain in one line: `18 ÷ 2 ÷ 3 = 3`
+- **Display Format**: Shows target and intermediate side by side (both large, prominent):
+  - Example: `Target: 18    Intermediate: 18` (initial state)
+  - After selecting 2: `Target: 18    Intermediate: 9`
+  - After selecting 3: `Target: 18    Intermediate: 3`
+  - After selecting 3 again: `Target: 18    Intermediate: 1` ✅ Success!
+- **Equation Display**: Shows the regular multiplication equation below (like Normal Mode) for undo functionality
+  - Example: `2 × 3 = 6`
+  - Primes in equation are clickable for undo
 - **Prime Interaction**:
   - When player selects a prime, divide the current intermediate by that prime
   - If result is NOT a whole number, nothing happens (silent rejection)
-  - If result IS a whole number, update the display with new intermediate
+  - If result IS a whole number, update the intermediate display
 - **Success Condition**: When intermediate reaches 1 (all factors selected)
 - **Prime Targets**: Work same as Normal Mode (click "It's Prime!")
 - **Mode Persistence**: Selected mode applies to entire game session
 - **Educational Value**: 
-  - Players see exact progress after each selection
+  - Players see both their selected factors (equation) AND the division progress (intermediate)
+  - Connects multiplication and division visually
   - Wrong choices are obvious (nothing happens)
-  - Easier to understand factorization process
+  - Easier to understand the relationship between multiplication and division
   - Great for beginners!
 
 ---

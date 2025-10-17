@@ -2,9 +2,9 @@
 
 ## Project Information
 **Project Name**: Math Practice Web App (Prime Factorization Game)  
-**Version**: 1.1.0  
-**Last Updated**: October 14, 2025  
-**Development Status**: ✅ **v1.1 DEPLOYED** - Prime Recognition Feature Live on GitHub Pages!  
+**Version**: 1.2.0  
+**Last Updated**: October 16, 2025  
+**Development Status**: ✅ **v1.2 COMPLETE** - Simple Mode Added!  
 
 ---
 
@@ -209,19 +209,23 @@ math_web_app/
 - [ ] Update README with new feature (Optional - can be done later)
 - [x] Deploy v1.1 to GitHub Pages ✅ LIVE!
 
-### Phase 10 (v1.2): Simple Mode for Beginners (🔄 In Progress - Oct 14)
-- [ ] Update index.html - Add mode selector buttons to main menu
-- [ ] Update CSS - Style mode selector (Normal/Simple buttons)
-- [ ] Update game.js - Add gameMode to gameState
-- [ ] Update game.js - Add logic to check if prime divides evenly
-- [ ] Update game.js - Update equation display format for Simple Mode
-- [ ] Update ui.js - Show division chain format in Simple Mode
-- [ ] Update main.js - Wire up mode selector buttons
-- [ ] Test Simple Mode with composite numbers
-- [ ] Test Simple Mode with wrong prime selections
-- [ ] Test Simple Mode with prime targets
-- [ ] Test Normal Mode still works correctly
-- [ ] Deploy v1.2 to GitHub Pages
+### Phase 10 (v1.2): Simple Mode for Beginners (✅ Completed - Oct 16)
+- [x] Update index.html - Add mode selector buttons to main menu
+- [x] Update CSS - Style mode selector (Normal/Simple buttons)
+- [x] Update CSS - Style side-by-side target/intermediate display for Simple Mode
+- [x] Update index.html - Add intermediate display element
+- [x] Update game.js - Add gameMode to gameState
+- [x] Update game.js - Add currentIntermediate to gameState
+- [x] Update game.js - Update logic to check if prime divides evenly
+- [x] Update game.js - Fix currentProduct calculation in Simple Mode (Bug #6)
+- [x] Update ui.js - Show side-by-side target and intermediate in Simple Mode
+- [x] Update ui.js - Keep equation display in Simple Mode (for undo)
+- [x] Update main.js - Wire up mode selector buttons
+- [x] Test Simple Mode with composite numbers ✅
+- [x] Test Simple Mode with wrong prime selections ✅
+- [x] Test Simple Mode with prime targets ✅
+- [x] Test Normal Mode still works correctly ✅
+- [ ] Deploy v1.2 to GitHub Pages (Future)
 
 ---
 
@@ -299,6 +303,27 @@ math_web_app/
 - Players must recognize when target cannot be factorized
 - Timer continues running - no hints provided
 
+### 8. Simple Mode Logic (v1.2 - In Progress)
+- **Display**: Shows target and intermediate side by side (both large, prominent)
+  - Initial state: `Target: 18    Intermediate: 18`
+  - After operations: `Target: 18    Intermediate: 9` (after dividing by 2)
+- **Equation Display**: Shows regular multiplication equation below (same as Normal Mode)
+  - Example: `2 × 3 = 6` (shows PRODUCT, not intermediate)
+  - Used for undo functionality (click primes in equation)
+- **Prime Selection**:
+  - Check if `currentIntermediate % prime === 0` (divides evenly)
+  - If yes: Update `currentIntermediate = currentIntermediate / prime`
+  - If yes: ALSO update `currentProduct = calculateProduct(selectedPrimes)` for equation display
+  - If no: Do nothing (silent rejection)
+- **Success Detection**: When `currentIntermediate === 1`
+- **Undo**: 
+  - Multiply `currentIntermediate` by the removed prime
+  - Recalculate `currentProduct` for equation display
+- **UI Changes**: 
+  - Show two large numbers side by side at top (target + intermediate)
+  - Show equation display below (same as Normal Mode, for undo)
+  - Update target display area to show both target and intermediate values
+
 ---
 
 ## Known Constraints & Considerations
@@ -370,6 +395,10 @@ math_web_app/
 4. **GO sound caused countdown to freeze** - Attempted to add "GO!" sound when game starts, but caused countdown to stick on 1. Feature removed, countdown bug fixed. ✅ FIXED
 5. **Success screen doesn't pause naturally** - New target appeared immediately after success, felt jarring. Added 600ms delay for better UX. ✅ FIXED
 
+### Issues Identified - Oct 16, 2025 (v1.2 Development)
+
+6. **Simple Mode equation shows wrong result** - Equation display in Simple Mode always showed 1 (or wrong value) instead of correct product. Root cause: `currentProduct` wasn't being updated in Simple Mode's `selectPrime()` and `undoPrime()` functions. Fixed by calculating `currentProduct` in both modes. ✅ FIXED
+
 ---
 
 ## Next Steps
@@ -429,5 +458,17 @@ math_web_app/
   - Tested: All new functionality working correctly
   - Phase 9 complete - Feature successfully deployed
   - Educational value increased: Players now learn prime recognition alongside factorization
+- **v1.2.0** (Oct 16, 2025): 🎓 SIMPLE MODE FOR BEGINNERS ADDED!
+  - Added: Simple Mode alongside Normal Mode with mode selector on main menu
+  - Added: Side-by-side display of Target and Intermediate values in Simple Mode
+  - Added: Division-based gameplay where intermediate updates as factors are selected
+  - Fixed: Bug #6 - Equation display now correctly shows product in Simple Mode
+  - Updated: UI to show both target/intermediate AND equation in Simple Mode
+  - Updated: Game logic to validate prime divisibility (silent rejection if not divisible)
+  - Styled: Responsive layout for target/intermediate display with flexbox
+  - Tested: All Simple Mode functionality working correctly
+  - Phase 10 complete - Feature successfully implemented
+  - Educational value increased: Beginners can see division progress alongside multiplication
+  - Total files: 15 (HTML, CSS, 5 JS modules, 4 spec files, README, learning journal, workflows)
 
 
