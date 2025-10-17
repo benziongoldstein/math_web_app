@@ -4,7 +4,7 @@ A fun, educational web-based game for practicing prime factorization skills. Rac
 
 ![Game Version](https://img.shields.io/badge/version-1.2.0-blue)
 ![Status](https://img.shields.io/badge/status-fully%20functional-brightgreen)
-![Features](https://img.shields.io/badge/modes-2%20game%20modes-purple)
+![Features](https://img.shields.io/badge/features-prime%20recognition%20%2B%202%20modes-purple)
 
 ## 🌐 Play Online
 
@@ -20,8 +20,8 @@ This interactive math game helps players practice prime factorization in a fun, 
 
 ### Key Features
 - ✅ **Two game modes** - Normal Mode and Simple Mode for different skill levels
-- ✅ **Prime recognition** - Identify prime numbers (v1.1)
-- ✅ **Simple Mode** - See division progress in real-time for easier learning (v1.2)
+- ✅ **Prime recognition** - Identify prime numbers that can't be factorized
+- ✅ **Simple Mode** - See division progress in real-time for easier learning
 - ✅ **60-second timed gameplay** - Fast-paced challenge
 - ✅ **10 prime numbers to choose from** - 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
 - ✅ **Undo functionality** - Click primes in equation to remove them
@@ -201,7 +201,7 @@ This game helps players:
 - **Files Created**: 15
 - **Bugs Fixed**: 6
 - **Tests Passed**: 100% ✅
-- **Features**: 2 game modes, prime recognition, responsive design
+- **Features**: Prime recognition, 2 game modes (Normal & Simple), responsive design
 
 ---
 

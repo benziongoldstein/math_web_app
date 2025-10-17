@@ -13,8 +13,9 @@ Players have **1 minute total** to correctly factorize as many random numbers as
 ### Target Number Generation
 - On game start (and after each successful factorization), a random target number is generated
 - Range: **5 to 100** (inclusive)
-- **Important**: Only generate **composite numbers** that can be factorized using the available primes
-- **Avoid** generating prime numbers that cannot be factorized (e.g., 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+- **Mix of composite and prime numbers**:
+  - **80% composite numbers** that can be factorized using the available primes
+  - **20% large prime numbers** (31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97) for prime recognition
 - Target is displayed prominently at the top of the screen
 
 ### Prime Number Selection Interface
@@ -22,6 +23,7 @@ Players have **1 minute total** to correctly factorize as many random numbers as
 - Primes are clickable buttons/elements
 - Each prime can be clicked **multiple times** (e.g., click "2" three times to get 2×2×2 = 8)
 - Visual feedback shows which primes have been selected and in what order
+- **"It's Prime!" button** for identifying prime targets that cannot be factorized
 
 ### Multiplication Display
 - Show the **current product** as primes are selected
@@ -36,6 +38,10 @@ Players have **1 minute total** to correctly factorize as many random numbers as
   - **Instantly generate a new random target number** (no pause/delay)
   - Increment the "Correct Factors" score by 1
   - Clear the equation display and reset current product
+- When the target is a **prime number** and player clicks "It's Prime!":
+  - Same success feedback as factorization
+  - Increment score
+  - Generate new target
 
 ### Overshoot/Mismatch Handling
 - If the product exceeds or doesn't match the target:
@@ -212,63 +218,21 @@ All sounds should be simple, non-intrusive, and enhance the experience.
 
 ## Game Logic Requirements
 
-### Composite Number Generation Algorithm
+### Target Number Generation Algorithm
 - Generate random numbers between 5 and 100
-- Ensure all generated numbers can be factorized using available primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
-- Exclude prime numbers that have no factors other than 1 and themselves
+- **80% composite numbers** that can be factorized using available primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+- **20% prime numbers** for prime recognition: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
 
 ### Valid Target Numbers (Examples)
 - Composites: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 30, etc.
 - All numbers with factors from the available prime set
+- Large primes for recognition: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
 
-### Invalid Target Numbers (Must Avoid)
-- Primes greater than 29: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
-
----
-
-## New Feature: Simple Mode (v1.2 - Completed)
-
-### Feature Description
-An alternative gameplay mode that shows intermediate division results alongside the target, making factorization more intuitive and accessible for learners.
-
-### Implementation Details
-- **Mode Selection**: Player chooses between "Normal Mode" or "Simple Mode" on main menu before game starts
-- **Display Format**: Shows target and intermediate side by side (both large, prominent):
-  - Example: `Target: 18    Intermediate: 18` (initial state)
-  - After selecting 2: `Target: 18    Intermediate: 9`
-  - After selecting 3: `Target: 18    Intermediate: 3`
-  - After selecting 3 again: `Target: 18    Intermediate: 1` ✅ Success!
-- **Equation Display**: Shows the regular multiplication equation below (like Normal Mode) for undo functionality
-  - Example: `2 × 3 = 6`
-  - Primes in equation are clickable for undo
-- **Prime Interaction**:
-  - When player selects a prime, divide the current intermediate by that prime
-  - If result is NOT a whole number, nothing happens (silent rejection)
-  - If result IS a whole number, update the intermediate display
-- **Success Condition**: When intermediate reaches 1 (all factors selected)
-- **Prime Targets**: Work same as Normal Mode (click "It's Prime!")
-- **Mode Persistence**: Selected mode applies to entire game session
-- **Educational Value**: 
-  - Players see both their selected factors (equation) AND the division progress (intermediate)
-  - Connects multiplication and division visually
-  - Wrong choices are obvious (nothing happens)
-  - Easier to understand the relationship between multiplication and division
-  - Great for beginners!
-
----
-
-## New Feature: Prime Number Recognition (v1.1 - Completed)
-
-### Feature Description
-In addition to factorizing composite numbers, players must also recognize and identify prime numbers.
-
-### Implementation Details
+### Prime Recognition
 - **20% of targets are prime numbers** (randomly mixed with composites)
-- **Prime range**: 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 (15 primes between 30-100)
-- **"Prime" button** added to the UI alongside prime factor buttons
 - When target is prime:
   - Player cannot factorize it (will never reach the target)
-  - Player must recognize it's prime and click "Prime" button
+  - Player must recognize it's prime and click "It's Prime!" button
   - Correct click: Success sound + green flash + new target (same as factorization success)
   - Wrong click on composite: Nothing happens (no penalty)
 - If player tries to factorize a prime:
@@ -277,14 +241,51 @@ In addition to factorizing composite numbers, players must also recognize and id
   - Player must realize on their own
 - Score tracks both factorizations and prime identifications together
 
-### Educational Value
-- Teaches prime recognition alongside factorization
-- Increases difficulty and strategic thinking
-- More realistic mathematical challenge
+---
+
+## Game Modes
+
+### Normal Mode
+The standard gameplay mode for experienced players.
+
+**Display Format**:
+- Shows target number at top
+- Shows multiplication equation: `2 × 3 × 5 = 30`
+- Primes in equation are clickable for undo
+
+**Success Condition**: When current product exactly matches target number
+
+### Simple Mode
+An alternative mode designed for beginners that shows division progress alongside multiplication.
+
+**Display Format**:
+- Shows target and intermediate values side by side (both large, prominent)
+  - Initial state: `Target: 18    Intermediate: 18`
+  - After selecting 2: `Target: 18    Intermediate: 9`
+  - After selecting 3: `Target: 18    Intermediate: 3`
+  - After selecting 3 again: `Target: 18    Intermediate: 1` ✅ Success!
+- Shows multiplication equation below (like Normal Mode) for undo functionality
+  - Example: `2 × 3 = 6`
+  - Primes in equation are clickable for undo
+
+**Prime Interaction**:
+- When player selects a prime, divide the current intermediate by that prime
+- If result is NOT a whole number, nothing happens (silent rejection)
+- If result IS a whole number, update the intermediate display
+
+**Success Condition**: When intermediate reaches 1 (all factors selected)
+
+**Educational Value**: 
+- Players see both their selected factors (equation) AND the division progress (intermediate)
+- Connects multiplication and division visually
+- Wrong choices are obvious (nothing happens)
+- Easier to understand the relationship between multiplication and division
+
+**Mode Selection**: Player chooses between Normal Mode or Simple Mode on main menu before game starts. Selected mode applies to entire game session.
 
 ---
 
-## Future Enhancement Ideas (Out of Scope for v1)
+## Future Enhancement Ideas
 - Difficulty levels (different number ranges, more primes)
 - Leaderboard/high scores with persistence
 - Hint system showing one factor
