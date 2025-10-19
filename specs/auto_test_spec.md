@@ -229,8 +229,7 @@ This document outlines the automated testing strategy for the Prime Factorizatio
 math_web_app/
 ├── .github/
 │   └── workflows/
-│       ├── test.yml          # Run tests on PR
-│       └── deploy.yml        # Deploy on merge to main
+│       └── test.yml          # Run tests on PR
 ├── tests/
 │   ├── unit/
 │   │   ├── utils.test.js     # Test utils.js functions
@@ -275,16 +274,16 @@ math_web_app/
 
 ### Workflow 2: Deploy on Merge to Main
 
-**File**: `.github/workflows/deploy.yml`
+**Handled by**: GitHub Pages Built-in Deployment
 
 **Triggers**:
-- Push to `main` branch (after PR merge)
+- Automatic on push to `main` branch
+- No custom workflow file needed
 
-**Steps**:
-1. Checkout code
-2. Run tests (safety check)
-3. Build if needed
-4. Deploy to GitHub Pages
+**How it works**:
+- GitHub Pages automatically builds and deploys when changes are pushed to `main`
+- Uses the repository settings: Settings → Pages → Deploy from branch (`main`)
+- No additional configuration or workflow file required
 5. Verify deployment successful
 6. Notify on failure
 
