@@ -582,3 +582,280 @@ h2 {
     }
 }
 
+/* ===== AUTHENTICATION & USER PROFILE ===== */
+
+.user-profile {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.user-photo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.user-name {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: white;
+    color: #444;
+    border: 1px solid #ddd;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+.btn-google:hover {
+    background: #f8f8f8;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* ===== LEADERBOARD ===== */
+
+.leaderboard-tabs {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.tab-btn {
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+/* Active tab - filled purple style */
+.tab-btn.tab-active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Inactive tab - white with purple border */
+.tab-btn:not(.tab-active) {
+    background: white;
+    color: #667eea;
+    border: 3px solid #667eea;
+}
+
+.tab-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.your-rank {
+    text-align: center;
+    margin: 15px 0;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.your-rank p {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.rank-highlight {
+    color: #ffd700;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.leaderboard-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+.leaderboard-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.leaderboard-entry:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.leaderboard-entry.current-user {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+    border-color: #667eea;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.entry-rank {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    min-width: 40px;
+    text-align: center;
+}
+
+.entry-rank.top3 {
+    font-size: 1.8rem;
+}
+
+.entry-photo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: #ddd;
+}
+
+.entry-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.entry-name {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.entry-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.entry-score {
+    color: #4ade80;
+    font-weight: 600;
+}
+
+.entry-undos {
+    color: #fbbf24;
+}
+
+/* Mobile Responsiveness for Leaderboard */
+@media (max-width: 768px) {
+    .user-profile {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .user-photo {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .user-name {
+        font-size: 0.85rem;
+    }
+    
+    .btn-small {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .leaderboard-tabs {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .tab-btn {
+        width: 100%;
+    }
+    
+    .leaderboard-entry {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .entry-rank {
+        font-size: 1.2rem;
+        min-width: 30px;
+    }
+    
+    .entry-photo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .entry-name {
+        font-size: 1rem;
+    }
+    
+    .entry-stats {
+        flex-direction: column;
+        gap: 3px;
+        font-size: 0.85rem;
+    }
+}
+

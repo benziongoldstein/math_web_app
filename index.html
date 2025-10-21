@@ -9,6 +9,13 @@
 <body>
     <!-- Main Menu Screen -->
     <div id="main-menu" class="screen active">
+        <!-- User Profile Display (shown when signed in) -->
+        <div id="user-profile" class="user-profile" style="display: none;">
+            <img id="user-photo" class="user-photo" src="" alt="User">
+            <span id="user-name" class="user-name">Guest</span>
+            <button id="sign-out-btn" class="btn btn-small">Sign Out</button>
+        </div>
+        
         <h1>Prime Factorization Game</h1>
         <p class="subtitle">Practice your math skills!</p>
         
@@ -29,6 +36,13 @@
         
         <button id="start-btn" class="btn btn-primary">Start Game</button>
         <button id="how-to-play-btn" class="btn btn-secondary">How to Play</button>
+        <button id="leaderboard-btn" class="btn btn-secondary">🏆 Leaderboard</button>
+        
+        <!-- Sign in button (shown when NOT signed in) -->
+        <button id="sign-in-btn" class="btn btn-google">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=" alt="Google" class="google-icon">
+            Sign in with Google
+        </button>
     </div>
 
     <!-- How to Play Screen -->
@@ -140,6 +154,51 @@
         <button id="return-to-menu-btn" class="btn btn-primary">Return to Main Menu</button>
     </div>
 
+    <!-- Leaderboard Screen -->
+    <div id="leaderboard-screen" class="screen">
+        <h2>🏆 Leaderboard</h2>
+        
+        <!-- Mode Tabs -->
+        <div class="leaderboard-tabs">
+            <button id="normal-leaderboard-tab" class="tab-btn tab-active" data-mode="normal">Normal Mode</button>
+            <button id="simple-leaderboard-tab" class="tab-btn" data-mode="simple">Simple Mode</button>
+        </div>
+        
+        <!-- Your Rank Display -->
+        <div id="your-rank-display" class="your-rank" style="display: none;">
+            <p>Your Rank: <span id="your-rank-number" class="rank-highlight">#--</span></p>
+        </div>
+        
+        <!-- Loading Message -->
+        <div id="leaderboard-loading" class="leaderboard-message">
+            <p>Loading scores...</p>
+        </div>
+        
+        <!-- Empty Message -->
+        <div id="leaderboard-empty" class="leaderboard-message" style="display: none;">
+            <p>No scores yet. Be the first!</p>
+        </div>
+        
+        <!-- Leaderboard Entries -->
+        <div id="leaderboard-entries" class="leaderboard-list">
+            <!-- Entries will be populated by JavaScript -->
+        </div>
+        
+        <button id="close-leaderboard-btn" class="btn btn-primary">Close</button>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    
+    <!-- Firebase Services -->
+    <script src="js/auth.js"></script>
+    <script src="js/leaderboard.js"></script>
+    
     <!-- JavaScript Files -->
     <script src="js/utils.js"></script>
     <script src="js/audio.js"></script>

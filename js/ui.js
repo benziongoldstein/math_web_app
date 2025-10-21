@@ -179,4 +179,64 @@ function showSuccessAnimation() {
     }, 500);
 }
 
+/**
+ * Show a specific screen by ID
+ * @param {string} screenId - The ID of the screen to show
+ */
+function showScreen(screenId) {
+    hideAllScreens();
+    const screen = document.getElementById(screenId);
+    if (screen) {
+        screen.classList.remove('hidden');
+        screen.classList.add('active');
+    }
+}
+
+/**
+ * Update user profile UI (photo and name)
+ * @param {string} name - User's display name
+ * @param {string|null} photoURL - URL to user's photo, or null for guest
+ */
+function updateUserProfileUI(name, photoURL) {
+    const userProfile = document.getElementById('user-profile');
+    const userPhoto = document.getElementById('user-photo');
+    const userName = document.getElementById('user-name');
+    
+    if (!userProfile || !userPhoto || !userName) {
+        console.error('User profile elements not found');
+        return;
+    }
+    
+    userName.textContent = name;
+    
+    if (photoURL) {
+        userPhoto.src = photoURL;
+        userPhoto.style.display = 'block';
+    } else {
+        userPhoto.style.display = 'none';
+    }
+}
+
+/**
+ * Show UI elements for signed-in users
+ */
+function showSignedInUI() {
+    const userProfile = document.getElementById('user-profile');
+    const signInBtn = document.getElementById('sign-in-btn');
+    
+    if (userProfile) userProfile.style.display = 'flex';
+    if (signInBtn) signInBtn.style.display = 'none';
+}
+
+/**
+ * Show UI elements for signed-out users (guests)
+ */
+function showSignedOutUI() {
+    const userProfile = document.getElementById('user-profile');
+    const signInBtn = document.getElementById('sign-in-btn');
+    
+    if (userProfile) userProfile.style.display = 'none';
+    if (signInBtn) signInBtn.style.display = 'inline-block';
+}
+
 
