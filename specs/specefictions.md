@@ -284,16 +284,174 @@ In addition to factorizing composite numbers, players must also recognize and id
 
 ---
 
-## Future Enhancement Ideas (Out of Scope for v1)
+## New Feature: User Authentication & Leaderboard (v1.3 - In Progress)
+
+### Feature Description
+Players can sign in with their Google account to save their high scores and compete on a global leaderboard.
+
+### Authentication
+
+#### **Sign-In Requirements**
+- **Optional Authentication**: Players can play without signing in
+- **Anonymous Play**: Guest players see their scores but cannot save them
+- **Google Sign-In**: One-click authentication using Google OAuth
+- **User Data Stored**: Name + Profile Photo (photo optional, default avatar provided)
+
+#### **Sign-In Button Placement**
+- **Main Menu**: "Sign in with Google" button next to "How to Play"
+- **After Game**: Sign-in prompt shown if not authenticated
+- **Visual Indicator**: Small profile photo or "Guest" indicator always visible in corner when signed in
+
+#### **Guest Player Experience**
+- Can play all game modes normally
+- Sees their score at the end
+- Can view the full leaderboard
+- **Cannot** see their rank on leaderboard
+- Message displayed: "Sign in with Google to save your score!"
+- Prompted to sign in after each game
+
+### Leaderboard System
+
+#### **Separate Leaderboards**
+- **Two Independent Leaderboards**: Normal Mode and Simple Mode tracked separately
+- **Mode-Specific Display**: After playing, show the leaderboard for the mode just played
+- **Switch Between Modes**: Can view both leaderboards from main menu
+
+#### **Leaderboard Display**
+- **Top 10 Scores**: Shows top 10 players for selected mode
+- **Player's Rank**: Shows authenticated user's rank (e.g., "#47 on leaderboard")
+- **Real-Time Updates**: Leaderboard updates live when new scores are posted
+
+#### **Leaderboard Entry Information**
+Each entry displays:
+1. **Rank**: Position (1-10 or player's rank)
+2. **Profile Photo**: User's Google profile picture (or default avatar)
+3. **Name**: User's display name from Google
+4. **Score**: Numbers factored (including primes recognized)
+5. **Undos**: Number of undo actions used
+
+**Display Format Example:**
+```
+🏆 Normal Mode Leaderboard
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. 👤 Sarah K.    15 numbers  2 undos
+2. 👤 Alex M.     14 numbers  3 undos  
+3. 👤 Jordan T.   14 numbers  5 undos
+...
+10. 👤 Ben G.     10 numbers  4 undos
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Your Rank: #47
+```
+
+#### **Ranking Logic**
+Scores are ranked by:
+1. **Primary**: Most numbers factored (higher is better)
+2. **Secondary**: Least undos used (lower is better)
+3. **Tiebreaker**: If both are equal, show as tied (same rank)
+
+#### **Score Persistence**
+- **Save Only Personal Best**: One best score per user per mode
+- **Automatic Save**: Saves automatically if new personal best
+- **No Manual Save**: No "Save this score?" prompt
+- **Database Storage**: Scores stored in Firebase Firestore
+
+### User Interface Changes
+
+#### **Main Menu Additions**
+- **"Sign in with Google" Button**: Prominent button on main menu (if not signed in)
+- **Profile Display**: Small profile photo + name in corner (if signed in)
+- **"Leaderboard" Button**: New button to view leaderboards anytime
+
+#### **Results Screen (After Game)**
+Shows in order:
+1. **Your Score**: Numbers factored and undos used
+2. **Your Rank**: Position on leaderboard (if signed in) - e.g., "🏆 Rank #5!"
+3. **Top 3 Preview**: Quick view of top 3 players
+4. **Action Buttons**:
+   - 📊 "View Full Leaderboard" → Opens full leaderboard screen
+   - 🔄 "Play Again" → Starts new game in same mode
+   - 🏠 "Main Menu" → Returns to main menu
+5. **Sign-In Prompt** (if not signed in):
+   - Message: "Sign in with Google to save your score!"
+   - Button: "Sign in Now"
+
+#### **Leaderboard Screen**
+- **Mode Tabs/Buttons**: Switch between Normal and Simple Mode leaderboards
+- **Full Top 10 List**: Complete ranking with all details
+- **Your Stats** (if signed in):
+  - Your current rank
+  - Your personal best score
+  - Highlight your entry if in top 10
+- **Close/Back Button**: Return to previous screen
+
+### Technical Requirements
+
+#### **Backend Service: Firebase**
+- **Firebase Authentication**: Google OAuth sign-in
+- **Cloud Firestore Database**: Store scores and user data
+- **Real-Time Sync**: Live leaderboard updates
+- **Security Rules**: Users can only write their own scores, everyone can read leaderboard
+
+#### **Data Structure**
+
+**Users Collection:**
+```javascript
+{
+  userId: "google_user_id",
+  name: "Ben Goldstein",
+  photoURL: "https://..." (optional),
+  lastPlayed: timestamp
+}
+```
+
+**Scores Collection:**
+```javascript
+{
+  scoreId: "auto_generated_id",
+  userId: "google_user_id",
+  name: "Ben Goldstein",
+  photoURL: "https://..." (optional, default avatar if null),
+  mode: "normal" | "simple",
+  numbersFactored: 15,
+  undos: 3,
+  timestamp: timestamp
+}
+```
+
+#### **Queries**
+- **Get Top 10**: Query scores by mode, order by numbersFactored DESC, then undos ASC, limit 10
+- **Get User Rank**: Count scores better than user's score
+- **Real-Time Listener**: Subscribe to leaderboard updates
+
+### Educational & Competitive Value
+- **Motivation**: Compete with friends and global players
+- **Progress Tracking**: See improvement over time with personal best
+- **Social Proof**: Display name and photo create engagement
+- **Fair Competition**: Separate leaderboards for different skill levels (Normal vs Simple)
+- **Optional Participation**: Can enjoy game without competitive pressure
+
+### Privacy & Security
+- **Minimal Data**: Only store necessary data (name, photo)
+- **Google OAuth**: Secure authentication, no password handling
+- **Public Leaderboard**: Names and scores are public (expected for leaderboards)
+- **No Email Storage**: Don't collect or store email addresses
+- **Firebase Security Rules**: Prevent cheating and unauthorized writes
+
+---
+
+## Future Enhancement Ideas (Out of Scope for v1.3)
 - Difficulty levels (different number ranges, more primes)
-- Leaderboard/high scores with persistence
 - Hint system showing one factor
 - Multiple game modes (timed vs. untimed, endless mode)
 - Progression/achievement system
 - Multiplayer/competitive mode
-- Statistics tracking across sessions
+- Detailed statistics tracking (games played, average score, improvement graphs)
 - Custom prime set selection
-- Separate score tracking for primes vs composites
+- "NEW RECORD!" celebration animation
+- User profile page with detailed stats
+- Friend system / follow players
+- Daily challenges
+- Achievements and badges
 
 ---
 

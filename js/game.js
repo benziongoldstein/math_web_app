@@ -89,10 +89,25 @@ function startGame() {
 /**
  * End the game
  */
-function endGame() {
+async function endGame() {
     clearInterval(gameState.timerInterval);
     gameState.screen = 'gameOver';
     updateUI();
+    
+    // Save score to Firebase if user is signed in
+    if (typeof isSignedIn === 'function' && isSignedIn()) {
+        const mode = gameState.gameMode || 'normal';
+        const score = gameState.scores.correctFactors;
+        const undos = gameState.scores.undoCount;
+        
+        const isNewBest = await saveScore(mode, score, undos);
+        
+        if (isNewBest) {
+            console.log('🎉 New personal best saved!');
+        }
+    } else {
+        console.log('Not signed in - score not saved');
+    }
 }
 
 /**

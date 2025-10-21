@@ -2,9 +2,9 @@
 
 ## Project Information
 **Project Name**: Math Practice Web App (Prime Factorization Game)  
-**Version**: 1.2.0  
-**Last Updated**: October 16, 2025  
-**Development Status**: ✅ **v1.2 COMPLETE** - Simple Mode Added!  
+**Version**: 1.3.0 (In Development)  
+**Last Updated**: October 19, 2025  
+**Development Status**: 🚧 **v1.3 IN PROGRESS** - Authentication & Leaderboard  
 
 ---
 
@@ -14,24 +14,33 @@
 - **Language**: JavaScript (ES6+)
 - **Markup**: HTML5
 - **Styling**: CSS3
-- **Framework**: TBD (Options: Vanilla JS, React, Vue, Svelte)
-- **Audio**: Web Audio API or HTML5 Audio elements
+- **Framework**: Vanilla JavaScript
+- **Audio**: Web Audio API
+
+### Backend (v1.3 - NEW!)
+- **Backend-as-a-Service**: Firebase (Google)
+- **Authentication**: Firebase Authentication (Google OAuth)
+- **Database**: Cloud Firestore (NoSQL)
+- **Real-Time**: Firestore real-time listeners
+- **Hosting**: Still GitHub Pages (static site + Firebase SDK)
 
 ### Development Tools
 - **Code Editor**: Any modern IDE
-- **Version Control**: Git
+- **Version Control**: Git + GitHub
 - **Browser Testing**: Chrome, Firefox, Safari, Edge
-- **Local Server**: Live Server or similar (for testing)
+- **Local Server**: Python HTTP Server (python3 -m http.server 8000)
 
-### Deployment (Future)
-- **Hosting**: TBD (Options: GitHub Pages, Netlify, Vercel)
-- **Environment**: Static site (no backend required for v1)
+### Deployment
+- **Static Hosting**: GitHub Pages (https://benziongoldstein.github.io/math_web_app/)
+- **Backend**: Firebase (managed by Google)
+- **CI/CD**: GitHub Actions (automated testing on PRs)
+- **Environment**: Static site + Firebase SDK (no custom backend server)
 
 ---
 
 ## Project Architecture
 
-### File Structure (Proposed)
+### File Structure
 ```
 math_web_app/
 ├── index.html              # Main HTML file
@@ -42,17 +51,24 @@ math_web_app/
 │   ├── game.js             # Game logic
 │   ├── ui.js               # UI updates and rendering
 │   ├── audio.js            # Sound management
-│   └── utils.js            # Helper functions
+│   ├── utils.js            # Helper functions
+│   ├── firebase-config.js  # Firebase configuration (v1.3)
+│   └── auth.js             # Authentication logic (v1.3)
+│   └── leaderboard.js      # Leaderboard logic (v1.3)
 ├── assets/
-│   ├── sounds/             # Audio files
-│   │   ├── click.mp3
-│   │   ├── success.mp3
-│   │   └── undo.mp3
-│   └── images/             # Any images/icons (optional)
+│   └── images/             # Any images/icons (default avatar, etc.)
 ├── specs/
 │   ├── specefictions.md    # Product specification
-│   └── dev_spec_status.md  # This file
-└── README.md               # Project documentation
+│   ├── dev_spec_status.md  # This file
+│   ├── learning_journal.md # Learning documentation
+│   └── auto_test_spec.md   # Testing specification
+├── .github/
+│   └── workflows/
+│       └── test.yml        # CI/CD workflow
+├── tests/
+│   └── test.html           # Test suite
+├── README.md               # Project documentation
+└── .gitignore              # Ignore Firebase config secrets
 ```
 
 ### Module Breakdown
@@ -61,6 +77,7 @@ math_web_app/
 - Initialize the application
 - Set up event listeners
 - Coordinate between modules
+- Initialize Firebase (v1.3)
 
 #### 2. Game Logic (game.js)
 - Generate random composite numbers
@@ -71,13 +88,14 @@ math_web_app/
 - Undo functionality
 
 #### 3. UI Management (ui.js)
-- Render game screens (main menu, gameplay, score screen)
+- Render game screens (main menu, gameplay, score screen, leaderboard)
 - Update displays (timer, target, equation, scores)
 - Handle animations and visual feedback
 - Screen transitions
+- Display user profile info (v1.3)
 
 #### 4. Audio Management (audio.js)
-- Load sound files
+- Generate sounds using Web Audio API
 - Play sounds on events (click, success, undo)
 - Handle audio settings/muting (optional)
 
@@ -86,6 +104,24 @@ math_web_app/
 - Prime factorization validation
 - Composite number filtering
 - Helper functions
+
+#### 6. Firebase Configuration (firebase-config.js) - v1.3
+- Firebase project configuration
+- Initialize Firebase services
+- Export Firebase instances
+
+#### 7. Authentication (auth.js) - v1.3
+- Google Sign-In/Sign-Out
+- Auth state management
+- User profile retrieval
+- Display user info in UI
+
+#### 8. Leaderboard (leaderboard.js) - v1.3
+- Save scores to Firestore
+- Retrieve top 10 scores
+- Calculate user rank
+- Real-time leaderboard updates
+- Handle personal best logic
 
 ---
 
@@ -225,7 +261,103 @@ math_web_app/
 - [x] Test Simple Mode with wrong prime selections ✅
 - [x] Test Simple Mode with prime targets ✅
 - [x] Test Normal Mode still works correctly ✅
-- [ ] Deploy v1.2 to GitHub Pages (Future)
+- [x] Deploy v1.2 to GitHub Pages ✅ LIVE!
+
+### Phase 11 (v1.3): User Authentication & Leaderboard (🚧 In Progress - Oct 19)
+
+#### Step 1: Firebase Setup
+- [x] Create Firebase project in Firebase Console
+- [x] Enable Google Authentication in Firebase
+- [x] Enable Cloud Firestore database
+- [x] Get Firebase configuration (API keys, project ID)
+- [ ] Set up Firestore security rules
+- [x] Create Firestore database indexes for queries ✅
+
+#### Step 2: Project Integration
+- [x] Create js/firebase-config.js with Firebase configuration
+- [x] Add Firebase SDK scripts to index.html
+- [x] Initialize Firebase in main.js
+- [x] Test Firebase connection
+
+#### Step 3: Authentication UI
+- [x] Update index.html - Add "Sign in with Google" button to main menu
+- [x] Update index.html - Add user profile display area (corner)
+- [x] Update CSS - Style sign-in button
+- [x] Update CSS - Style user profile display (photo + name)
+
+#### Step 4: Authentication Logic
+- [x] Create js/auth.js module
+- [x] Implement signInWithGoogle() function
+- [x] Implement signOut() function
+- [x] Implement onAuthStateChanged() listener
+- [x] Update UI to show/hide sign-in button based on auth state
+- [x] Update UI to display user profile when signed in
+- [x] Test sign-in flow
+- [x] Test sign-out flow
+
+#### Step 5: Leaderboard UI
+- [x] Update index.html - Add "Leaderboard" button to main menu
+- [x] Update index.html - Create leaderboard screen HTML
+- [x] Update index.html - Add mode tabs (Normal/Simple) to leaderboard
+- [x] Update index.html - Add leaderboard entry template (rank, photo, name, score, undos)
+- [x] Update CSS - Style leaderboard screen
+- [x] Update CSS - Style leaderboard entries
+- [x] Update CSS - Style mode tabs
+- [x] Update CSS - Style "Your Rank" display
+- [ ] Update CSS - Style top 3 preview in results screen
+
+#### Step 6: Leaderboard Logic
+- [x] Create js/leaderboard.js module
+- [x] Implement saveScore(userId, name, photo, mode, score, undos) function
+- [x] Implement checkPersonalBest() function (only save if better)
+- [x] Implement getTopScores(mode, limit) function
+- [x] Implement getUserRank(userId, mode) function
+- [x] Implement real-time listener for leaderboard updates
+- [ ] Test score saving (blocked by missing database indexes)
+- [ ] Test personal best logic (blocked by missing database indexes)
+- [ ] Test leaderboard retrieval (blocked by missing database indexes)
+- [ ] Test ranking calculation (blocked by missing database indexes)
+
+#### Step 7: Integration with Game Flow
+- [x] Update game.js - Add currentUser to gameState
+- [x] Update game.js - Call saveScore() at game end (if signed in and personal best)
+- [ ] Update ui.js - Show top 3 preview on results screen
+- [ ] Update ui.js - Show user rank on results screen (if signed in)
+- [ ] Update ui.js - Show "Sign in to save score" message (if not signed in)
+- [x] Update ui.js - Populate full leaderboard screen (created displayLeaderboard function)
+- [ ] Update ui.js - Highlight user's entry in leaderboard (if in top 10)
+- [x] Update main.js - Wire up "Leaderboard" button
+- [ ] Update main.js - Wire up "Sign in Now" button on results screen
+- [x] Update main.js - Wire up mode tabs in leaderboard
+
+#### Step 8: Default Avatar & Polish
+- [ ] Create/add default avatar image to assets/images/
+- [ ] Implement fallback to default avatar if no photoURL
+- [ ] Add loading states for leaderboard
+- [ ] Add error handling for Firebase operations
+- [ ] Add "No scores yet" message for empty leaderboards
+- [ ] Test with multiple users
+- [ ] Test tie-breaking logic
+
+#### Step 9: Firestore Security Rules
+- [ ] Write security rules to prevent cheating
+- [ ] Rule: Users can only write their own scores
+- [ ] Rule: Everyone can read leaderboard
+- [ ] Rule: Validate score data structure
+- [ ] Deploy security rules to Firebase
+- [ ] Test security rules
+
+#### Step 10: Testing & Deployment
+- [ ] Test full flow: Guest play → Sign in → Play → Save score → View leaderboard
+- [ ] Test guest can view leaderboard but not save
+- [ ] Test real-time updates (open in 2 tabs, post score in one)
+- [ ] Test both Normal and Simple mode leaderboards
+- [ ] Test ranking with ties
+- [ ] Test personal best logic (only saves if better)
+- [ ] Update README with Firebase setup instructions
+- [ ] Update learning_journal.md with Firebase lessons learned
+- [ ] Deploy v1.3 to GitHub Pages
+- [ ] Test live deployment
 
 ---
 
@@ -303,7 +435,7 @@ math_web_app/
 - Players must recognize when target cannot be factorized
 - Timer continues running - no hints provided
 
-### 8. Simple Mode Logic (v1.2 - In Progress)
+### 8. Simple Mode Logic (v1.2 - Completed)
 - **Display**: Shows target and intermediate side by side (both large, prominent)
   - Initial state: `Target: 18    Intermediate: 18`
   - After operations: `Target: 18    Intermediate: 9` (after dividing by 2)
@@ -323,6 +455,255 @@ math_web_app/
   - Show two large numbers side by side at top (target + intermediate)
   - Show equation display below (same as Normal Mode, for undo)
   - Update target display area to show both target and intermediate values
+
+### 9. Firebase Authentication (v1.3 - In Progress)
+- **Firebase SDK**: Load from CDN in index.html
+  ```html
+  <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-firestore-compat.js"></script>
+  ```
+- **Configuration**: Store Firebase config in firebase-config.js
+  ```javascript
+  const firebaseConfig = {
+    apiKey: "...",
+    authDomain: "...",
+    projectId: "...",
+    // ... other config
+  };
+  firebase.initializeApp(firebaseConfig);
+  ```
+- **Google Sign-In**:
+  ```javascript
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      const user = result.user;
+      // user.displayName, user.photoURL, user.uid
+    });
+  ```
+- **Auth State Listener**:
+  ```javascript
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in
+      updateUIForSignedInUser(user);
+    } else {
+      // User is signed out
+      updateUIForSignedOutUser();
+    }
+  });
+  ```
+
+### 10. Firestore Database Structure (v1.3 - In Progress)
+
+#### **Collections:**
+
+**`scores` collection:**
+```javascript
+{
+  scoreId: "auto_generated",        // Document ID
+  userId: "google_user_id",         // Firebase Auth UID
+  name: "Ben Goldstein",            // Display name
+  photoURL: "https://..." | null,   // Profile photo (optional)
+  mode: "normal" | "simple",        // Game mode
+  numbersFactored: 15,              // Score (primary sort)
+  undos: 3,                         // Undos (secondary sort)
+  timestamp: firebase.Timestamp     // When score was achieved
+}
+```
+
+**`users` collection (optional - for future enhancements):**
+```javascript
+{
+  userId: "google_user_id",         // Document ID = UID
+  name: "Ben Goldstein",
+  photoURL: "https://...",
+  totalGames: 25,
+  lastPlayed: firebase.Timestamp
+}
+```
+
+#### **Queries:**
+
+**Get Top 10 for a mode:**
+```javascript
+firebase.firestore()
+  .collection('scores')
+  .where('mode', '==', 'normal')
+  .orderBy('numbersFactored', 'desc')
+  .orderBy('undos', 'asc')
+  .limit(10)
+  .get();
+```
+
+**Get User's Personal Best:**
+```javascript
+firebase.firestore()
+  .collection('scores')
+  .where('userId', '==', currentUser.uid)
+  .where('mode', '==', 'normal')
+  .orderBy('numbersFactored', 'desc')
+  .orderBy('undos', 'asc')
+  .limit(1)
+  .get();
+```
+
+**Calculate User Rank:**
+```javascript
+// Count how many scores are better than user's score
+firebase.firestore()
+  .collection('scores')
+  .where('mode', '==', 'normal')
+  .where('numbersFactored', '>', userScore)
+  .get()
+  .then(snapshot => {
+    const rank = snapshot.size + 1;
+  });
+```
+
+**Real-Time Listener:**
+```javascript
+firebase.firestore()
+  .collection('scores')
+  .where('mode', '==', 'normal')
+  .orderBy('numbersFactored', 'desc')
+  .orderBy('undos', 'asc')
+  .limit(10)
+  .onSnapshot((snapshot) => {
+    // Updates automatically when scores change!
+    updateLeaderboardUI(snapshot.docs);
+  });
+```
+
+#### **Security Rules:**
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Scores collection
+    match /scores/{scoreId} {
+      // Anyone can read scores
+      allow read: if true;
+      
+      // Only authenticated users can create their own scores
+      allow create: if request.auth != null 
+                    && request.resource.data.userId == request.auth.uid
+                    && request.resource.data.numbersFactored is int
+                    && request.resource.data.numbersFactored >= 0
+                    && request.resource.data.numbersFactored <= 100
+                    && request.resource.data.undos is int
+                    && request.resource.data.undos >= 0
+                    && request.resource.data.mode in ['normal', 'simple'];
+      
+      // Users can only update their own scores
+      allow update: if request.auth != null 
+                    && resource.data.userId == request.auth.uid;
+      
+      // Users can only delete their own scores
+      allow delete: if request.auth != null 
+                    && resource.data.userId == request.auth.uid;
+    }
+  }
+}
+```
+
+#### **Database Indexes:**
+
+Firestore requires indexes when you query with multiple `orderBy()` fields or combine `where()` with `orderBy()`.
+
+**Why we need indexes:**
+- Our leaderboard queries sort by TWO fields: `numbersFactored` (descending) AND `undos` (ascending)
+- Without an index, Firestore will throw: **"The query requires an index"**
+- Indexes make queries fast and efficient
+
+**Indexes to create in Firebase Console:**
+
+1. **Collection**: `scores`
+   - **Fields indexed**:
+     - `mode` - Ascending
+     - `numbersFactored` - Descending
+     - `undos` - Ascending
+   - **Query scope**: Collection
+   - **Used for**: Getting top 10 scores for each mode
+
+**How to create:**
+1. Go to Firebase Console → Firestore Database → Indexes tab
+2. Click "Create Index"
+3. Enter collection name and fields as specified above
+4. Click "Create" and wait ~2 minutes for index to build
+
+**Alternative**: Click the blue error link in browser console when query fails - Firebase will auto-generate the index creation link!
+
+### 11. Leaderboard Logic (v1.3 - In Progress)
+
+**Save Score Flow:**
+```javascript
+async function saveScore(user, mode, numbersFactored, undos) {
+  // 1. Check if this is a personal best
+  const personalBest = await getPersonalBest(user.uid, mode);
+  
+  // 2. Compare scores (higher numbersFactored is better, then lower undos)
+  const isBetter = !personalBest || 
+                   numbersFactored > personalBest.numbersFactored ||
+                   (numbersFactored === personalBest.numbersFactored && 
+                    undos < personalBest.undos);
+  
+  // 3. Only save if it's a new personal best
+  if (isBetter) {
+    // Delete old personal best if exists
+    if (personalBest) {
+      await firebase.firestore()
+        .collection('scores')
+        .doc(personalBest.id)
+        .delete();
+    }
+    
+    // Save new score
+    await firebase.firestore()
+      .collection('scores')
+      .add({
+        userId: user.uid,
+        name: user.displayName,
+        photoURL: user.photoURL || null,
+        mode: mode,
+        numbersFactored: numbersFactored,
+        undos: undos,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    
+    return true; // New personal best!
+  }
+  
+  return false; // Not a personal best
+}
+```
+
+**Calculate Rank:**
+```javascript
+async function getUserRank(userId, mode) {
+  // Get user's score
+  const userScore = await getPersonalBest(userId, mode);
+  if (!userScore) return null;
+  
+  // Count better scores
+  const betterScores = await firebase.firestore()
+    .collection('scores')
+    .where('mode', '==', mode)
+    .where('numbersFactored', '>', userScore.numbersFactored)
+    .get();
+  
+  // Count tied scores with fewer undos
+  const tiedScores = await firebase.firestore()
+    .collection('scores')
+    .where('mode', '==', mode)
+    .where('numbersFactored', '==', userScore.numbersFactored)
+    .where('undos', '<', userScore.undos)
+    .get();
+  
+  return betterScores.size + tiedScores.size + 1;
+}
+```
 
 ---
 
@@ -402,13 +783,15 @@ math_web_app/
 ---
 
 ## Next Steps
-1. ✅ ~~Decide on technology stack~~ - Using Vanilla JS
+1. ✅ ~~Decide on technology stack~~ - Using Vanilla JS + Firebase
 2. ✅ ~~Set up project structure~~ - Completed
-3. ✅ ~~Implement all phases 1-6~~ - Completed
-4. ✅ ~~Test and fix bugs (Phase 7)~~ - All tests passed!
-5. ✅ ~~Create README documentation (Phase 8)~~ - Completed
-6. **🎉 PROJECT COMPLETE!**
-7. **Future**: Optional enhancements (deployment, new features, etc.)
+3. ✅ ~~Implement all phases 1-10~~ - Completed (v1.0, v1.1, v1.2)
+4. **🚧 IN PROGRESS: Phase 11 (v1.3) - Authentication & Leaderboard**
+   - Create Firebase project
+   - Implement Google Sign-In
+   - Build leaderboard system
+   - Add real-time updates
+5. **Future**: Additional enhancements (stats, achievements, challenges, etc.)
 
 ---
 
@@ -470,5 +853,19 @@ math_web_app/
   - Phase 10 complete - Feature successfully implemented
   - Educational value increased: Beginners can see division progress alongside multiplication
   - Total files: 15 (HTML, CSS, 5 JS modules, 4 spec files, README, learning journal, workflows)
+- **v1.3.0** (Oct 19, 2025 - IN PROGRESS): 🔐 AUTHENTICATION & LEADERBOARD!
+  - Phase 11 started - User authentication and competitive leaderboard
+  - Backend: Firebase (Authentication + Cloud Firestore)
+  - Feature: Google Sign-In with one click
+  - Feature: Two separate leaderboards (Normal Mode & Simple Mode)
+  - Feature: Real-time leaderboard updates
+  - Feature: Save personal best scores only
+  - Feature: Rank by most numbers factored, then least undos
+  - Feature: Profile photos with default avatar fallback
+  - Optional: Can play as guest without signing in
+  - Security: Firestore rules prevent cheating
+  - Specs: Updated specefictions.md and dev_spec_status.md with complete feature details
+  - Learning: Added detailed Firebase explanations to learning_journal.md
+  - Total new files: 3 (firebase-config.js, auth.js, leaderboard.js)
 
 
