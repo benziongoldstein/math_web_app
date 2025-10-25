@@ -641,7 +641,7 @@ h2 {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-top: 10px;
+    margin: 10px auto 0 auto; /* Center the button horizontally */
 }
 
 .btn-google:hover {

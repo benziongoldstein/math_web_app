@@ -2,9 +2,10 @@
 
 A fun, educational web-based game for practicing prime factorization skills. Race against the clock to match target numbers by multiplying prime numbers!
 
-![Game Version](https://img.shields.io/badge/version-1.2.0-blue)
+![Game Version](https://img.shields.io/badge/version-1.3.0-blue)
 ![Status](https://img.shields.io/badge/status-fully%20functional-brightgreen)
 ![Features](https://img.shields.io/badge/modes-2%20game%20modes-purple)
+![Backend](https://img.shields.io/badge/backend-Firebase-orange)
 
 ## 🌐 Play Online
 
@@ -19,12 +20,24 @@ Try the game now - no installation needed! Or play locally by following the inst
 This interactive math game helps players practice prime factorization in a fun, arcade-style format. Players have 60 seconds to correctly factorize as many composite numbers as possible by selecting and multiplying prime numbers.
 
 ### Key Features
+
+#### Gameplay
 - ✅ **Two game modes** - Normal Mode and Simple Mode for different skill levels
 - ✅ **Prime recognition** - Identify prime numbers (v1.1)
 - ✅ **Simple Mode** - See division progress in real-time for easier learning (v1.2)
 - ✅ **60-second timed gameplay** - Fast-paced challenge
 - ✅ **10 prime numbers to choose from** - 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
 - ✅ **Undo functionality** - Click primes in equation to remove them
+
+#### User Features (v1.3 - NEW!)
+- ✅ **Google Sign-In** - One-click authentication with your Google account
+- ✅ **Leaderboard** - Compete globally with separate boards for each mode
+- ✅ **Personal Best Tracking** - Automatically save your highest scores
+- ✅ **Real-time Rankings** - See your rank and top 10 players instantly
+- ✅ **Profile Display** - Show your name and photo from Google account
+- ✅ **Guest Mode** - Play without signing in (scores not saved)
+
+#### Experience
 - ✅ **Score tracking** - Tracks correct answers and undo count
 - ✅ **Sound effects** - Click, success, and undo sounds
 - ✅ **Visual feedback** - Green flash animation on success
@@ -110,6 +123,31 @@ This interactive math game helps players practice prime factorization in a fun, 
 - Use undo strategically when you overshoot the target
 - Speed matters - try to solve as many as possible in 60 seconds!
 
+### Using the Leaderboard (v1.3)
+
+1. **Main Menu**
+   - Click **"Sign in with Google"** at the bottom of the main menu
+   - Authorize with your Google account (one-time setup)
+   - Your profile photo and name will appear at the top
+
+2. **Play & Save Scores**
+   - Play the game as usual in your chosen mode
+   - After each game, your score is automatically saved **if it's your personal best**
+   - Only your highest score is stored (most correct factors, then least undos)
+
+3. **View Leaderboard**
+   - Click **"🏆 Leaderboard"** from the main menu
+   - Switch between Normal Mode and Simple Mode tabs
+   - See top 10 players ranked by:
+     - Primary: Most numbers factored
+     - Tie-breaker: Least undos used
+   - Your personal rank is displayed at the top (if signed in)
+
+4. **Guest Mode**
+   - You can play without signing in
+   - Scores will NOT be saved to the leaderboard
+   - You can view the leaderboard as a guest
+
 ---
 
 ## 📁 Project Structure
@@ -124,15 +162,24 @@ math_web_app/
 │   ├── game.js             # Game logic and state management
 │   ├── ui.js               # UI updates and rendering
 │   ├── audio.js            # Sound effects (Web Audio API)
-│   └── utils.js            # Helper functions (number generation, calculations)
+│   ├── utils.js            # Helper functions (number generation, calculations)
+│   ├── firebase-config.js  # Firebase configuration (v1.3)
+│   ├── auth.js             # Authentication logic (v1.3)
+│   └── leaderboard.js      # Leaderboard & score management (v1.3)
 ├── assets/
-│   ├── sounds/             # (Empty - using Web Audio API)
 │   └── images/             # (Optional future images)
 ├── specs/
 │   ├── specefictions.md    # Product specification
 │   ├── dev_spec_status.md  # Development status and tracking
-│   └── learning_journal.md # Learning documentation
-└── README.md               # This file
+│   ├── learning_journal.md # Learning documentation
+│   └── auto_test_spec.md   # Testing specification
+├── .github/
+│   └── workflows/
+│       └── test.yml        # CI/CD automated testing
+├── tests/
+│   └── test.html           # Test suite
+├── README.md               # This file
+└── FIREBASE_SECURITY_RULES.md  # Security rules setup guide (v1.3)
 ```
 
 ---
@@ -144,15 +191,23 @@ math_web_app/
 - **CSS3** - Styling, animations, responsive design
 - **Vanilla JavaScript (ES6+)** - Game logic and interactivity
 
+### Backend (v1.3 - NEW!)
+- **Firebase** - Google's Backend-as-a-Service (BaaS) platform
+- **Firebase Authentication** - Google OAuth sign-in
+- **Cloud Firestore** - NoSQL database for real-time score storage
+- **Firestore Indexes** - 3 composite indexes for efficient queries
+
 ### Audio
 - **Web Audio API** - Procedurally generated sound effects (no audio files needed!)
 
-### Development
+### Development & Deployment
 - **Python HTTP Server** - Local development server
-- **Git** - Version control
+- **Git & GitHub** - Version control
+- **GitHub Pages** - Static site hosting
+- **GitHub Actions** - CI/CD automated testing on pull requests
 
 ### Browser Support
-- ✅ Chrome (tested)
+- ✅ Chrome (tested and fully functional)
 - ✅ Firefox (should work)
 - ✅ Safari (should work)
 - ✅ Edge (should work)
@@ -175,7 +230,11 @@ math_web_app/
 ### Scoring
 - **Correct Factors**: +1 for each target number matched
 - **Undo Count**: Tracks total undo actions used
-- No penalties - just try to maximize correct answers!
+- **Leaderboard Ranking (v1.3)**: 
+  - Primary: Most numbers factored (higher is better)
+  - Tie-breaker: Least undos used (lower is better)
+  - Separate leaderboards for Normal Mode and Simple Mode
+- No penalties - just try to maximize correct answers and minimize undos!
 
 ---
 
@@ -195,13 +254,16 @@ This game helps players:
 
 ## 📊 Development Stats
 
-- **Current Version**: 1.2.0
-- **Total Development Time**: ~2 days
-- **Lines of Code**: ~1000 lines
-- **Files Created**: 15
-- **Bugs Fixed**: 6
+- **Current Version**: 1.3.0
+- **Total Development Time**: ~3 weeks
+- **Lines of Code**: ~1500+ lines
+- **Files Created**: 18
+- **Bugs Fixed**: 9
 - **Tests Passed**: 100% ✅
-- **Features**: 2 game modes, prime recognition, responsive design
+- **Features**: 2 game modes, prime recognition, authentication, leaderboard, responsive design
+- **Backend**: Firebase (Authentication + Cloud Firestore)
+- **Database Indexes**: 3 composite indexes
+- **Deployment**: GitHub Pages + Firebase
 
 ---
 
@@ -217,24 +279,24 @@ If you find a bug, please document it in `specs/dev_spec_status.md`.
 
 Potential features for future versions:
 - [ ] Difficulty levels (different number ranges, more primes)
-- [ ] Leaderboard/high scores with local storage
 - [ ] Hint system
 - [ ] Untimed practice mode
 - [ ] Sound on/off toggle
 - [ ] More prime numbers available
-- [ ] Multiplayer/competitive mode
-- [ ] Statistics tracking across sessions
+- [ ] Detailed statistics dashboard (average time, accuracy, etc.)
 - [ ] Separate score tracking for primes vs composites
 - [ ] Advanced mode with larger numbers
+- [ ] Achievement badges
+- [ ] Weekly/monthly leaderboard resets
 
 ---
 
 ## 📜 Credits
 
 **Developed by**: Ben  
-**Development Approach**: AI-assisted incremental development  
+**Development Approach**: AI-assisted incremental development with spec-first workflow  
 **Date**: October 2025  
-**Version**: 1.2.0  
+**Version**: 1.3.0  
 **Live Demo**: [https://benziongoldstein.github.io/math_web_app/](https://benziongoldstein.github.io/math_web_app/)  
 
 ### Acknowledgments
@@ -258,6 +320,12 @@ This project demonstrates:
 - Event-driven programming
 - CSS animations and transitions
 - Web Audio API usage
+- Backend integration with Firebase
+- Authentication implementation (OAuth)
+- Real-time database operations (Firestore)
+- Database query optimization (composite indexes)
+- Security rules implementation
+- CI/CD with GitHub Actions
 - Testing and debugging workflow
 - Documentation best practices
 
