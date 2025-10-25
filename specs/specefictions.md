@@ -284,7 +284,7 @@ In addition to factorizing composite numbers, players must also recognize and id
 
 ---
 
-## New Feature: User Authentication & Leaderboard (v1.3 - In Progress)
+## New Feature: User Authentication & Leaderboard (v1.3 - Completed)
 
 ### Feature Description
 Players can sign in with their Google account to save their high scores and compete on a global leaderboard.
